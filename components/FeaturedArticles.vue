@@ -25,18 +25,9 @@ export default {
   },
   computed: {
     sortedArticles() {
-      // Load reference data/content from store
-      console.log('yoo', this.$store.state.articles)
-      const featuredArticles = this.$store.state.articles.articles.filter((article) => {
-        return this.blok.articles.includes(article.uuid)
-      })
-
-      // Enable the ordering of the article previews
-      featuredArticles.sort((a, b) => {
-        return this.blok.articles.indexOf(a.uuid) - this.blok.articles.indexOf(b.uuid)
-      })
-
-      return featuredArticles
+      return this.$store.state.articles.articles
+        .filter((article) => this.blok.articles.includes(article.uuid))
+        .sort((a, b) => this.blok.articles.indexOf(a.uuid) - this.blok.articles.indexOf(b.uuid))
     }
   }
 }

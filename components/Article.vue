@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .bg-white.rounded-xl.m-8.px-8.py-16.mt-8.gap-10(class='md:grid lg:grid-cols-2')
+  .bg-white.rounded-xl.m-2.px-2.py-16.mt-8.gap-10(class='md:px-8 md:m-8 md:grid lg:grid-cols-2')
     section.transcript-container.overflow-y-auto.px-8.mb-8(class="md:mb-0")
       .mb-8.cursor-pointer.transcript(
         v-for='(t, index) in blok.transcript'
@@ -44,7 +44,11 @@ export default defineComponent({
     })
 
     return {
-      seek: seconds => player.seek(seconds)
+      seek: seconds => {
+        _removeActiveClass()
+        ctx.refs[`trans-${seconds}`][0].classList.add('active')
+        player.seek(seconds)
+      }
     }
 
     function _timeUpdateHandler(seconds) {

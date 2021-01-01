@@ -1,6 +1,6 @@
 <template lang="pug">
 nuxt-link(:to='articleLink')
-  h2.font-serif.pt-2.pb-1.text-3xl.font-bold {{ articleName }}
+  h2.font-serif.pt-2.pb-1.text-2xl.font-bold(class="md:text-3xl") {{ articleName }}
   p.article-date.uppercase.pb-6.leading-relaxed
     | POSTED ON 
     span {{ articleDate | formatDate }}

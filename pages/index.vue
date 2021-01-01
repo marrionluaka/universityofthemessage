@@ -11,14 +11,12 @@
 <script>
 export default {
   asyncData (context) {
-    // // This what would we do in real project
-    // const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+    // This what would we do in real project
+    const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
     // const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
 
     // Load the JSON from the API - loadig the home content (index page)
-    return context.app.$storyapi.get('cdn/stories/home', {
-      version: 'draft'
-    }).then(({ data }) => data).catch((res) => {
+    return context.app.$storyapi.get('cdn/stories/home', { version }).then(({ data }) => data).catch((res) => {
       if (!res.response) {
         console.error(res)
         context.error({ statusCode: 404, message: 'Failed to receive content form api' })
