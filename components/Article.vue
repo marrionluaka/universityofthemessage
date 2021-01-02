@@ -35,7 +35,7 @@ export default defineComponent({
 
     onMounted(() => {
       player = new YTPlayer('#player')
-      ctx.refs['trans-1'][0].classList.add('active')
+      ctx.refs[Object.keys(ctx.refs)[0]][0].classList.add('active')
 
       player.load(props.blok.sermon)
       player.setVolume(100)
@@ -153,4 +153,22 @@ export default defineComponent({
   color $font-gray
 .active
   color black
+  blockquote
+    color #41d0a3
+    border-left-color #41d0a3
+li
+  list-style-type disc
+  margin-left 2rem
+  p
+    margin-bottom 0
+
+p
+  margin-bottom 1rem
+blockquote
+  font-style italic
+  padding 20px
+  margin-bottom 1rem
+  border-left-width 3px
+  border-left-style solid
+  border-left-color $font-gray
 </style>

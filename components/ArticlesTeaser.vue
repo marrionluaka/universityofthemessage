@@ -4,7 +4,7 @@ nuxt-link(:to='articleLink')
   p.article-date.uppercase.pb-6.leading-relaxed
     | POSTED ON 
     span {{ articleDate | formatDate }}
-  p.pb-6.leading-loose {{ articleContent.intro }}
+  p.pb-6.leading-loose {{ articleContent.excerpt }}
 </template>
 
 <script>
