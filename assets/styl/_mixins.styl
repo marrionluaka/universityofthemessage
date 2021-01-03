@@ -1,0 +1,29 @@
+$breakpoint-mobile-upper =              600px;
+$breakpoint-mobile-landscape-upper =    768px;
+$breakpoint-tablet-portrait-upper =     900px;
+$breakpoint-desktop-small =             992px;
+$breakpoint-tablet-landscape-upper =    1200px;
+$breakpoint-desktop-lg =                1280px;
+
+breakpoint(class)
+    if class == mobile-only
+        @media (max-width: $breakpoint-mobile-upper)
+            {block}
+    if class == mobile-landscape
+        @media (min-width: $breakpoint-mobile-landscape-upper)
+            {block}
+    if class == tablet-portrait-up
+        @media (min-width: $breakpoint-mobile-upper)
+            {block}
+    if class == tablet-landscape-up
+        @media (min-width: $breakpoint-tablet-portrait-upper)
+            {block}
+    if class == desktop-small
+        @media (min-width: $breakpoint-desktop-small)
+            {block}
+    if class == desktop-up
+        @media (min-width: $breakpoint-tablet-landscape-upper)
+            {block}
+    if class == desktop-lg
+        @media (min-width: $breakpoint-desktop-lg)
+            {block}

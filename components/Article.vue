@@ -13,10 +13,22 @@ div
 
     section.flex.justify-center.items-center
       #player
+    
+    section.fixed.left-0.share-btn
+      .flex.flex-row(class="md:flex-col")
+        a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-fb(data-id='fb')
+          font-awesome-icon.text-white.text-2xl(:icon="faFacebookF")
+        a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-wa(data-id='wa')
+          font-awesome-icon.text-white.text-2xl(:icon="faWhatsapp")
+        a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-linkedin(data-id='in')
+          font-awesome-icon.text-white.text-2xl(:icon="faLinkedinIn")
+        a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-reddit(data-id='re')
+          font-awesome-icon.text-white.text-2xl(:icon="faRedditAlien")
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from '@vue/composition-api'
+import { faWhatsapp, faRedditAlien, faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { defineComponent, onMounted, ref, computed } from '@vue/composition-api'
 
 const YTPlayer = require('yt-player')
 const MySchema = require('storyblok-js-client/dist/schema')
@@ -27,6 +39,12 @@ export default defineComponent({
     blok: {
       type: Object,
       required: true
+    }
+  },
+
+  head() {
+    return {
+      script: [{ src: '/share-buttons.js' }]
     }
   },
 
@@ -44,6 +62,11 @@ export default defineComponent({
     })
 
     return {
+      faWhatsapp: computed(() => faWhatsapp),
+      faRedditAlien: computed(() => faRedditAlien),
+      faFacebookF: computed(() => faFacebookF),
+      faLinkedinIn: computed(() => faLinkedinIn),
+
       seek: seconds => {
         _removeActiveClass()
         ctx.refs[`trans-${seconds}`][0].classList.add('active')
@@ -171,4 +194,20 @@ blockquote
   border-left-width 3px
   border-left-style solid
   border-left-color $font-gray
+
+.share-btn
+  left 0
+  bottom 0
+  +breakpoint('mobile-landscape')
+    top 50%
+    transform translate(0%, -50%)
+
+.btn-fb
+  background-color $fb-blue
+.btn-wa
+  background-color $wa-green
+.btn-linkedin
+  background-color $li-blue
+.btn-reddit
+  background-color $reddit-red
 </style>

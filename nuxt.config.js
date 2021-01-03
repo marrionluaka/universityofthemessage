@@ -4,7 +4,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'universityofthemessage',
+    title: 'University Of The Message',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -50,8 +50,11 @@ export default {
         cacheProvider: 'memory'
       }
     ],
+
     // Doc: https://github.com/nuxt-community/style-resources-module
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+
+    'nuxt-fontawesome'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
