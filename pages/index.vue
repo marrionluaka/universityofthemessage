@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.flex-grow
+  section
     component(
       v-if='story.content.component'
       :key='story.content._uid'

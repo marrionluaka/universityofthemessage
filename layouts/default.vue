@@ -1,7 +1,7 @@
 <template lang="pug">
-  .wrapper
+  .wrapper.flex.flex-col.min-h-screen
     Header
-    Nuxt
+    Nuxt.flex-grow
     Footer
 </template>
 
@@ -20,9 +20,4 @@ export default {
 <style lang="stylus">
 body
   background-color $bg-gray
-
-.wrapper
-  display flex
-  min-height 100vh
-  flex-direction column
 </style>
