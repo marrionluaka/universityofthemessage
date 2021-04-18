@@ -2,7 +2,7 @@
 div(v-editable='blok')
   ul.flex.flex-col.py-6.mb-6
     li.flex-auto.px-6(v-for='article in sortedArticles' :key='article._uid')
-      article-teaser(
+      ArticlesTeaser(
         v-if='article.content'
         :article-link='article.full_slug'
         :article-name="article.name"
@@ -16,7 +16,11 @@ div(v-editable='blok')
 </template>
 
 <script>
+import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
+
 export default {
+  components: { ArticlesTeaser },
+
   props: {
     blok: {
       type: Object,

@@ -1,15 +1,16 @@
 <template lang="pug">
   section
-    component(
-      v-if='story.content.component'
-      :key='story.content._uid'
-      :blok='story.content'
-      :is='story.content.component'
-    )
+    template(v-if='story.content.component')
+      .page-container.mx-auto.px-6
+        component(v-for='blok in story.content.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
 <script>
+import FeaturedArticles from '~/components/FeaturedArticles.vue'
+
 export default {
+  components: { FeaturedArticles },
+
   asyncData (context) {
     // This what would we do in real project
     const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
@@ -55,3 +56,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+.page-container
+  margin 3rem auto 0
+  max-width 960px
+</style>

@@ -25,7 +25,6 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/components',
     '~/plugins/composition.js',
     '~/plugins/rich-text-renderer.js'
   ],
