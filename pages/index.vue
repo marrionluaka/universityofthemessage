@@ -1,60 +1,67 @@
 <template lang="pug">
   section
-    template(v-if='story.content.component')
+    template(v-if='story.component')
       .page-container.mx-auto.px-6
-        component(v-for='blok in story.content.body' :key='blok._uid' :blok='blok' :is='blok.component')
+        component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
-<script>
+<script lang="ts">
+import { useState } from 'vuex-composition-helpers'
+import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
+
+import useContext from '~/hooks/useContext'
 import FeaturedArticles from '~/components/FeaturedArticles.vue'
 
-export default {
+export default defineComponent({
   components: { FeaturedArticles },
 
-  asyncData (context) {
-    // This what would we do in real project
+  setup() {
+    const { articles } = useState(['articles'])
+    const { context, storyApi, storyBridge } = useContext()
+
+    const story: Ref<any> = ref({})
     const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-    // const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
 
-    // Load the JSON from the API - loadig the home content (index page)
-    return context.app.$storyapi.get('cdn/stories/home', { version }).then(({ data }) => data).catch((res) => {
-      if (!res.response) {
-        console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
-      } else {
-        console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
+    const fetchPage = async () => {
+      try {
+        const { data: { story: { content } } } = await storyApi.get('cdn/stories/home', { version })
+        story.value = content
+      } catch (e) {
+        console.warn(e)
+        context.error({ statusCode: 404 })
       }
-    })
-  },
+    }
 
-  mounted () {
-    // Use the input event for instant update of content
-    this.$storybridge.on('input', (event) => {
-      if (event.story.id === this.story.id) {
-        this.story.content = event.story.content
+    const fetchArticles = async () => {
+      if (articles.value.loaded !== '1') {
+        const { data: { stories } } = await storyApi.get('cdn/stories/', { starts_with: 'articles/', version })
+        context.store.commit('articles/setArticles', stories)
+        context.store.commit('articles/setLoaded', '1')
       }
-    })
-    // Use the bridge to listen the events
-    this.$storybridge.on(['published', 'change'], (event) => {
-      // window.location.reload()
-      this.$nuxt.$router.go({
-        path: this.$nuxt.$router.currentRoute,
-        force: true,
+    }
+
+    onMounted(async () => {
+      await fetchPage()
+      await fetchArticles()
+
+      storyBridge.on('input', (event: any) => {
+        if (event.story.id === story.value.id) {
+          story.value = event.story.content
+        }
+      })
+
+      storyBridge.on(['published', 'change'], () => {
+        // window.location.reload()
+        context.app.router.go({
+          path:context.app.router.currentRoute,
+          force: true,
+        })
       })
     })
-  },
 
-  async fetch(context) {
-    // Loading reference data - Articles in our case
-    if(context.store.state.articles.loaded !== '1') {
-
-      let articlesRefRes = await context.app.$storyapi.get(`cdn/stories/`, { starts_with: 'articles/', version: 'draft' })
-      context.store.commit('articles/setArticles', articlesRefRes.data.stories)
-      context.store.commit('articles/setLoaded', '1')
-    }
+    return { story }
   }
-}
+})
 </script>
 
 <style lang="stylus">
