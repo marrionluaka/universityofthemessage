@@ -10,14 +10,16 @@ import { useState } from 'vuex-composition-helpers'
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 
 import useContext from '~/hooks/useContext'
+import useStoryBridge from '~/hooks/useStoryBridge'
 import FeaturedArticles from '~/components/FeaturedArticles.vue'
 
 export default defineComponent({
   components: { FeaturedArticles },
 
   setup() {
-    const { articles } = useState(['articles'])
-    const { context, storyApi, storyBridge } = useContext()
+    const { context, storyApi } = useContext()
+    const { articles: state } = useState(['articles'])
+    const { setStoryBridgeListeners } = useStoryBridge()
 
     const story: Ref<any> = ref({})
     const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
@@ -33,7 +35,7 @@ export default defineComponent({
     }
 
     const fetchArticles = async () => {
-      if (articles.value.loaded !== '1') {
+      if (state.value.loaded !== '1') {
         const { data: { stories } } = await storyApi.get('cdn/stories/', { starts_with: 'articles/', version })
         context.store.commit('articles/setArticles', stories)
         context.store.commit('articles/setLoaded', '1')
@@ -43,20 +45,7 @@ export default defineComponent({
     onMounted(async () => {
       await fetchPage()
       await fetchArticles()
-
-      storyBridge.on('input', (event: any) => {
-        if (event.story.id === story.value.id) {
-          story.value = event.story.content
-        }
-      })
-
-      storyBridge.on(['published', 'change'], () => {
-        // window.location.reload()
-        context.app.router.go({
-          path:context.app.router.currentRoute,
-          force: true,
-        })
-      })
+      setStoryBridgeListeners(story)
     })
 
     return { story }

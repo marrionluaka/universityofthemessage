@@ -15,10 +15,14 @@ div(v-editable='blok')
       hr
 </template>
 
-<script>
+<script lang="ts">
+import { useState } from 'vuex-composition-helpers'
+import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
+
+import { IStory } from '@/global-types'
 import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
 
-export default {
+export default defineComponent({
   components: { ArticlesTeaser },
 
   props: {
@@ -27,14 +31,19 @@ export default {
       required: true
     }
   },
-  computed: {
-    sortedArticles() {
-      return this.$store.state.articles.articles
-        .filter((article) => this.blok.articles.includes(article.uuid))
-        .sort((a, b) => this.blok.articles.indexOf(a.uuid) - this.blok.articles.indexOf(b.uuid))
-    }
+
+  setup(props) {
+    const { articles: state } = useState(['articles'])
+
+    const sortedArticles: ComputedRef<IStory> = computed(() => {
+      return state.value.articles
+        .filter((article: any) => props.blok.articles.includes(article.uuid))
+        .sort((a: any, b: any) => props.blok.articles.indexOf(a.uuid) - props.blok.articles.indexOf(b.uuid))
+    })
+
+    return { sortedArticles }
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>
