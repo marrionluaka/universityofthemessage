@@ -7,8 +7,10 @@ nuxt-link(:to='articleLink')
   p.pb-6.leading-loose {{ articleContent.excerpt }}
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
   props: {
     articleContent: {
       type: Object,
@@ -27,14 +29,15 @@ export default {
       required: true
     }
   },
+
   filters: {
-    formatDate: function (value) {
+    formatDate: function (value: string): string | undefined {
       if (value) {
         return new Date(value).toLocaleDateString('en-US', { day: 'numeric', year: 'numeric', month: 'long' })
       }
     }
   }
-}
+})
 </script>
 
 <style lang="stylus">
