@@ -16,10 +16,9 @@ div(v-editable='blok')
 </template>
 
 <script lang="ts">
-import { useState } from 'vuex-composition-helpers'
 import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
 
-import { IStory } from '@/global-types'
+import useFetchArticles from '~/hooks/useFetchArticles'
 import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
 
 export default defineComponent({
@@ -33,10 +32,10 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { articles: state } = useState(['articles'])
+    const { articles } = useFetchArticles()
 
-    const sortedArticles: ComputedRef<IStory> = computed(() => {
-      return state.value.articles
+    const sortedArticles: ComputedRef<string[]> = computed(() => {
+      return articles.value
         .filter((article: any) => props.blok.articles.includes(article.uuid))
         .sort((a: any, b: any) => props.blok.articles.indexOf(a.uuid) - props.blok.articles.indexOf(b.uuid))
     })

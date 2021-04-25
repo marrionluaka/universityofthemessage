@@ -6,28 +6,28 @@
 </template>
 
 <script lang="ts">
-import { useState } from 'vuex-composition-helpers'
-import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
+import { defineComponent, onMounted } from '@vue/composition-api'
 
 import useContext from '~/hooks/useContext'
 import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
+import useFetchArticles from '~/hooks/useFetchArticles'
 import FeaturedArticles from '~/components/FeaturedArticles.vue'
 
 export default defineComponent({
   components: { FeaturedArticles },
 
   setup() {
-    const { context, storyApi } = useContext()
-    const { articles: state } = useState(['articles'])
+    const { storyApi } = useContext()
     const { setStoryBridgeListeners } = useStoryBridge()
     const { story, version, fetchStory } = useFetchStory()
+    const { loaded, setArticles, setLoaded } = useFetchArticles()
 
     const fetchArticles = async () => {
-      if (state.value.loaded !== '1') {
+      if (loaded.value !== '1') {
         const { data: { stories } } = await storyApi.get('cdn/stories/', { starts_with: 'articles/', version: version.value })
-        context.store.commit('articles/setArticles', stories)
-        context.store.commit('articles/setLoaded', '1')
+        setArticles(stories)
+        setLoaded('1')
       }
     }
 
