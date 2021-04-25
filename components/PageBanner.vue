@@ -1,12 +1,16 @@
 <template lang="pug">
-div
-  template(v-if="blok.component")
-    h2 {{ blok.title }}
-    p {{ blok.subtitle }}
+.-mt-4.bg-gray-500.p-10
+  h2 {{ blok.title }}
+  p {{ blok.subtitle }}
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+
+export interface IBanner {
+  title: string
+  subtitle: string
+}
 
 export default defineComponent({
   props: {

@@ -28,10 +28,12 @@
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/tailwindcss": "^3.1.0",
+    "@types/ramda": "0.27.40",
     "env-cmd": "10.1.0",
     "pug": "3.0.0",
     "pug-loader": "2.4.0",
     "pug-plain-loader": "1.1.0",
+    "ramda": "0.27.1",
     "stylus": "0.54.8",
     "stylus-loader": "3.0.2",
     "vuex-composition-helpers": "1.0.23"
