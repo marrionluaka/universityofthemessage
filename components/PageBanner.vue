@@ -1,5 +1,5 @@
 <template lang="pug">
-.-mt-4.bg-gray-500.p-10
+.-mt-4.bg-gray-300.p-10
   h2 {{ blok.title }}
   p {{ blok.subtitle }}
 </template>
