@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
+import { defineComponent, onMounted } from '@vue/composition-api'
 
-import useContext from '~/hooks/useContext'
+import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
 import PageBanner from './PageBanner.vue'
@@ -23,24 +23,11 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { context, storyApi } = useContext()
+    const { story, fetchStory } = useFetchStory()
     const { setStoryBridgeListeners } = useStoryBridge()
 
-    const story: Ref<any> = ref({})
-    const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-
-    const fetchPage = async () => {
-      try {
-        const { data: { story: { content } } } = await storyApi.get(`cdn/stories/${props.page}`, { version })
-        story.value = content
-      } catch (e) {
-        console.warn(e)
-        context.error({ statusCode: 404 })
-      }
-    }
-
     onMounted(async () => {
-      await fetchPage()
+      await fetchStory(props.page)
       setStoryBridgeListeners(story)
     })
 
