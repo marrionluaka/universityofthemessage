@@ -1,8 +1,12 @@
 <template lang="pug">
-section
+section.page
   template(v-if='story.component')
-    PageBanner(:blok="bannerData")
-    .page-container.mx-auto.px-6
+    PageBanner
+      h1.page__title {{ bannerData.title }}
+      .page__intro
+        p {{ bannerData.subtitle }}
+
+    .page__container.mx-auto.px-6
       component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
@@ -13,7 +17,12 @@ import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
-import PageBanner, { IBanner } from './PageBanner.vue'
+import PageBanner from './PageBanner.vue'
+
+interface IBanner {
+  title: string
+  subtitle: string
+}
 
 export default defineComponent({
   components: { PageBanner },
@@ -46,7 +55,27 @@ export default defineComponent({
 </script>
 
 <style lang="stylus">
-.page-container
-  margin 3rem auto 0
-  max-width 960px
+.page
+  &__title
+    font-weight 300
+    font-size 3.6rem
+    margin 0 0 1rem 0
+    color #FFF
+    +breakpoint(mobile)
+      font-size 5rem
+
+  &__intro
+    font-weight 300
+    font-size 1.2rem
+    line-height 1.3
+    color #EDEDED
+    +breakpoint(mobile)
+      font-size 1.65rem
+
+  &__intro p
+    margin 0
+
+  &__container
+    margin 3rem auto 0
+    max-width 960px
 </style>
