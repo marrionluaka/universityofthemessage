@@ -1,7 +1,7 @@
 <template lang="pug">
 .page-banner
   .page-banner__bg-image(:style="getImgUrl()")
-  .page-banner__content.container(:class="className")
+  .page-banner__content.container.mx-auto(:class="className")
     slot
 </template>
 

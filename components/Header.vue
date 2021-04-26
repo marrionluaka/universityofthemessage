@@ -1,6 +1,6 @@
 <template lang="pug">
 header.site-header
-  .container(class="md:flex md:items-center md:justify-between")
+  .container.mx-auto(class="md:flex md:items-center md:justify-between")
     h1.w-56.z-20.relative.m-0.text-2xl.font-thin
       nuxt-link.text-white.no-underline(to='/')
         strong.font-normal Branham
@@ -19,11 +19,11 @@ header.site-header
           li.current-menu-item
             nuxt-link.text-white.block.no-underline(to='/about') A propos
           li
-            nuxt-link.text-white.block.no-underline(to='/sermons') Sermons
+            nuxt-link.text-white.block.no-underline(to='#') Sermons
           //- li
           //-   nuxt-link.text-white.block.no-underline(to='/events') Events
           li
-            nuxt-link.text-white.block.no-underline(to='/contact') Contact
+            nuxt-link.text-white.block.no-underline(to='#') Contact
           //- li
           //-   nuxt-link.text-white.block.no-underline(to='/news') Blog
 </template>
