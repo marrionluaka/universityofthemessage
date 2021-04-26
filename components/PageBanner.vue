@@ -1,6 +1,6 @@
 <template lang="pug">
 .page-banner
-  .page-banner__bg-image(style='background-image: url(https://images.unsplash.com/photo-1488188840666-e2308741a62f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80);')
+  .page-banner__bg-image(style='background-image: url(https://images.unsplash.com/photo-1488188840666-e2308741a62f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&h=742&q=80);')
   .page-banner__content.container.container--narrow
     h1.page-banner__title {{ blok.title }}
     .page-banner__intro
