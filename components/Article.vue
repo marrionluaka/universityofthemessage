@@ -28,7 +28,7 @@ div
 
 <script>
 import { faWhatsapp, faRedditAlien, faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import { defineComponent, onMounted, ref, computed } from '@vue/composition-api'
+import { defineComponent, onMounted, computed } from '@vue/composition-api'
 
 const YTPlayer = require('yt-player')
 const MySchema = require('storyblok-js-client/dist/schema')

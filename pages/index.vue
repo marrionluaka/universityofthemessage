@@ -42,7 +42,7 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      await fetchStory('home')
+      await fetchStory('/home')
       await fetchArticles()
       setStoryBridgeListeners(story)
     })

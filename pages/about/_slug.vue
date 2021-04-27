@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    Page(page="about")
+    Page
 </template>
 
 <script lang="ts">

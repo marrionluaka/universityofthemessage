@@ -1,23 +1,27 @@
 <template lang="pug">
 section.page
   template(v-if='story.component')
-    PageBanner
+    PageBanner(v-if="bannerData")
       h1.page__title {{ bannerData.title }}
       .page__intro
         p {{ bannerData.subtitle }}
 
-    .page__container.mx-auto.px-6
-      component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
+    .container.container--narrow.mx-auto.px-6
+      BreadCrumbs
+      slot(:body="story.body")
+        component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">
 import { reject, find } from 'ramda'
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 
+import useContext from '~/hooks/useContext'
 import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
 import PageBanner from './PageBanner.vue'
+import BreadCrumbs from './BreadCrumbs.vue'
 
 interface IBanner {
   title: string
@@ -25,27 +29,23 @@ interface IBanner {
 }
 
 export default defineComponent({
-  components: { PageBanner },
+  components: { PageBanner, BreadCrumbs },
 
-  props: {
-    page: {
-      type: String,
-      required: true
-    }
-  },
-
-  setup(props) {
+  setup() {
+    const { context } = useContext()
     const { story, fetchStory } = useFetchStory()
     const { setStoryBridgeListeners } = useStoryBridge()
 
     const isPageBanner = (x: any) => x.component === 'page-banner'
-    const bannerData: Ref<IBanner> = ref({ title: "l'Université du message", subtitle: "La parole de Dieu faite chair" })
+    const bannerData: Ref<IBanner | null> = ref(null)
 
     onMounted(async () => {
-      await fetchStory(props.page)
+      const defaultData = { title: "l'Université du message", subtitle: "La parole de Dieu faite chair" }
+
+      await fetchStory(context.route.path)
       setStoryBridgeListeners(story)
 
-      bannerData.value = find(isPageBanner, story.value.body)
+      bannerData.value = find(isPageBanner, story.value.body) || defaultData
       story.value.body = reject(isPageBanner, story.value.body)
     })
 

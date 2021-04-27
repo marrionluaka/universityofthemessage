@@ -8,7 +8,7 @@ export default function useFetchStory() {
 
   const fetchStory = async (page: string) => {
     try {
-      const { data: { story: { content } } } = await storyApi.get(`cdn/stories/${page}`, { version })
+      const { data: { story: { content } } } = await storyApi.get(`cdn/stories${page}`, { version })
       story.value = content
     } catch (e) {
       console.warn(e)
