@@ -50,6 +50,11 @@ export default {
         cacheProvider: 'memory'
       }
     ],
+    // Doc: https://i18n.nuxtjs.org/setup
+    [
+      'nuxt-i18n',
+      { /* module options */ }
+    ],
 
     // Doc: https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
