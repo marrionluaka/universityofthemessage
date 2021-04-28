@@ -2,7 +2,6 @@ import { onMounted, ref, Ref } from '@vue/composition-api'
 
 import useContext from '~/hooks/useContext'
 import useFetchStory from '~/hooks/useFetchStory'
-
 export interface ILink {
   path: string
   name: string

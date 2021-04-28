@@ -1,11 +1,12 @@
 <template lang="pug">
 nav
-  ul
-    li(v-for="crumb in crumbs")
-      nuxt-link(:to="crumb.path" v-if="!crumb.classes")
-        p.capitalize {{ crumb.name }}
+  slot(:crumbs="crumbs")
+    ul
+      li(v-for="crumb in crumbs")
+        nuxt-link(:to="crumb.path" v-if="!crumb.classes")
+          p.capitalize {{ crumb.name }}
 
-      p.capitalize(v-else) {{ crumb.name }}
+        p.capitalize(v-else) {{ crumb.name }}
 </template>
 
 <script lang="ts">

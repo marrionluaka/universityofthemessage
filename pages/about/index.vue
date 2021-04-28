@@ -15,10 +15,11 @@ import usePageLinks from '~/hooks/usePageLinks'
 
 import Page from '~/components/Page.vue'
 import PageLinks from '~/components/PageLinks.vue'
+import PageContent from '~/components/PageContent.vue'
 
 export default defineComponent({
   name: 'about',
-  components: { Page, PageLinks },
+  components: { Page, PageLinks, 'page-content': PageContent },
 
   setup() {
     const { links, parentLink } = usePageLinks('about')

@@ -7,8 +7,8 @@ section.page
         p {{ bannerData.subtitle }}
 
     .container.container--narrow.mx-auto.px-6
-      BreadCrumbs
       slot(:body="story.body")
+        BreadCrumbs
         component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
