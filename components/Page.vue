@@ -16,7 +16,6 @@ section.page
 import { reject, find } from 'ramda'
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 
-import useContext from '~/hooks/useContext'
 import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
@@ -31,8 +30,14 @@ interface IBanner {
 export default defineComponent({
   components: { PageBanner, BreadCrumbs },
 
-  setup() {
-    const { context } = useContext()
+  props: {
+    path: {
+      type: String,
+      required: true
+    }
+  },
+
+  setup(props) {
     const { story, fetchStory } = useFetchStory()
     const { setStoryBridgeListeners } = useStoryBridge()
 
@@ -41,8 +46,7 @@ export default defineComponent({
 
     onMounted(async () => {
       const defaultData = { title: "l'Université du message", subtitle: "La parole de Dieu faite chair" }
-
-      await fetchStory(context.route.path)
+      await fetchStory(props.path)
       setStoryBridgeListeners(story)
 
       bannerData.value = find(isPageBanner, story.value.body) || defaultData

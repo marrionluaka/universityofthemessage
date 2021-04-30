@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    Page
+    Page(:path="path")
       template(#default="{ body }")
         BreadCrumbs.metabox.metabox--position-up.metabox--with-home-link
           template(#default="{ crumbs }")
@@ -16,8 +16,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
 
+import useContext from '~/hooks/useContext'
 import usePageLinks from '~/hooks/usePageLinks'
 
 import Page from '~/components/Page.vue'
@@ -28,9 +29,19 @@ import PageContent from '~/components/PageContent.vue'
 export default defineComponent({
   components: { Page, PageLinks, BreadCrumbs, 'page-content': PageContent },
 
+  nuxtI18n: {
+    paths: {
+      en: '/about/:slug',
+      fr: '/a-propos/:slug'
+    }
+  },
+
   setup() {
+    const { context } = useContext()
     const { links, parentLink } = usePageLinks('about')
-    return { links, parentLink }
+    const path: ComputedRef<string> = computed(() => `a-propos/${context.route.params.slug}`)
+
+    return { path, links, parentLink }
   }
 })
 </script>

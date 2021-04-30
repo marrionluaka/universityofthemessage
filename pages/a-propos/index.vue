@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    Page
+    Page(:path="$options.name")
       template(#default="{ body }")
         div
           PageLinks(v-if="links.length" :parentLink="parentLink" :links="links")
@@ -18,8 +18,15 @@ import PageLinks from '~/components/PageLinks.vue'
 import PageContent from '~/components/PageContent.vue'
 
 export default defineComponent({
-  name: 'about',
+  name: 'a-propos',
   components: { Page, PageLinks, 'page-content': PageContent },
+
+  nuxtI18n: {
+    paths: {
+      en: '/about',
+      fr: '/a-propos'
+    }
+  },
 
   setup() {
     const { links, parentLink } = usePageLinks('about')

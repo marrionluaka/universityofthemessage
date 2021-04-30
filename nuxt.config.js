@@ -51,10 +51,17 @@ export default {
       }
     ],
     // Doc: https://i18n.nuxtjs.org/setup
-    [
-      'nuxt-i18n',
-      { /* module options */ }
-    ],
+    ['nuxt-i18n', {
+      strategy: 'prefix_and_default',
+      defaultLocale: 'fr',
+      locales: [
+        { code: 'fr', name: 'Français', iso: 'fr-FR' },
+        { code: 'en', name: 'English', iso: 'en-US' },
+      ],
+      vueI18n: {
+        fallbackLocale: 'fr',
+      },
+    }],
 
     // Doc: https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
