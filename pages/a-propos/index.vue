@@ -29,7 +29,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { links, parentLink } = usePageLinks('about')
+    const { links, parentLink } = usePageLinks('a-propos')
     return { links, parentLink }
   }
 })

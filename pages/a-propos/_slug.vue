@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts">
+import { useState } from 'vuex-composition-helpers'
 import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
 
 import useContext from '~/hooks/useContext'
@@ -23,8 +24,8 @@ import usePageLinks from '~/hooks/usePageLinks'
 
 import Page from '~/components/Page.vue'
 import PageLinks from '~/components/PageLinks.vue'
-import BreadCrumbs from '~/components/BreadCrumbs.vue'
 import PageContent from '~/components/PageContent.vue'
+import BreadCrumbs from '~/components/BreadCrumbs.vue'
 
 export default defineComponent({
   components: { Page, PageLinks, BreadCrumbs, 'page-content': PageContent },
@@ -38,8 +39,10 @@ export default defineComponent({
 
   setup() {
     const { context } = useContext()
-    const { links, parentLink } = usePageLinks('about')
-    const path: ComputedRef<string> = computed(() => `a-propos/${context.route.params.slug}`)
+    const { i18n } = useState(['i18n'])
+    const { links, parentLink } = usePageLinks('a-propos')
+    const slug = i18n.value.routeParams[context.i18n.locale]?.slug || context.route.params.slug
+    const path: ComputedRef<string> = computed(() => `a-propos/${slug}`)
 
     return { path, links, parentLink }
   }
