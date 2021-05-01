@@ -1,3 +1,5 @@
+import i18n from './i18n'
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -58,9 +60,7 @@ export default {
         { code: 'fr', name: 'Français', iso: 'fr-FR' },
         { code: 'en', name: 'English', iso: 'en-US' },
       ],
-      vueI18n: {
-        fallbackLocale: 'fr',
-      },
+      vueI18n: i18n
     }],
 
     // Doc: https://github.com/nuxt-community/style-resources-module

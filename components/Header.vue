@@ -2,7 +2,7 @@
 header.site-header
   .container.mx-auto(class="md:flex md:items-center md:justify-between")
     h1.w-56.z-20.relative.m-0.text-2xl.font-thin
-      nuxt-link.text-white.no-underline(to='/')
+      nuxt-link.text-white.no-underline(:to="localePath('/')")
         strong.font-normal Branham
         |  Eglise
 
@@ -17,9 +17,11 @@ header.site-header
       nav
         ul.list-none.p-0.m-0(class="md:flex md:justify-end")
           li.current-menu-item
-            nuxt-link.text-white.block.no-underline(to='/about') A propos
+            nuxt-link.text-white.block.no-underline(:to="localePath('a-propos')") {{ $t('a-propos') }}
           li
             nuxt-link.text-white.block.no-underline(to='#') Sermons
+          li
+            LanguageSwitch
           //- li
           //-   nuxt-link.text-white.block.no-underline(to='/events') Events
           li
@@ -34,9 +36,15 @@ import { defineComponent } from '@vue/composition-api'
 import { XIcon, MenuAlt2Icon, SearchIcon } from '@vue-hero-icons/outline'
 
 import useToggle from '~/hooks/useToggle'
+import LanguageSwitch from '~/components/LanguageSwitch.vue'
 
 export default defineComponent({
-  components: { MenuAlt2Icon, XIcon, SearchIcon },
+  components: {
+    XIcon,
+    SearchIcon,
+    MenuAlt2Icon,
+    LanguageSwitch
+  },
 
   setup() {
     const [isMenuOpen, setIsMenuOpen] = useToggle()
