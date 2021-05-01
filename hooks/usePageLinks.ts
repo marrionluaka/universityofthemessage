@@ -36,8 +36,7 @@ export default function usePageLinks(page: string) {
 
           return {
             path,
-            name,
-            isActiveLink: context.route.params.slug === translatedName
+            name
           }
         })
 

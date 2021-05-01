@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    template(v-if='story.component')
+    template(v-if='story')
       PageBanner(className='text-center text-white')
         h1.headline.headline--large L'Evangile du troisième exode
         h2.headline.headline--medium Réveille tous les demons de leur draps
@@ -10,7 +10,7 @@
           |  d'un changement réel et radical dans le domaine de la religion.
 
       .container.container--narrow.mx-auto.px-6.mt-12
-        component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
+        component(v-for='blok in story.content.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">
@@ -42,9 +42,9 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      await fetchStory('/home')
+      await fetchStory('home')
       await fetchArticles()
-      setStoryBridgeListeners(story)
+      setStoryBridgeListeners(story.value.content)
     })
 
     return { story }

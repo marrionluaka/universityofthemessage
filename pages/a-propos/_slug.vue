@@ -1,7 +1,7 @@
 <template lang="pug">
   section
-    Page(:path="path")
-      template(#default="{ body }")
+    Page(v-if="story" :story="story.content")
+      template
         BreadCrumbs.metabox.metabox--position-up.metabox--with-home-link
           template(#default="{ crumbs }")
             p
@@ -10,17 +10,19 @@
                 |  Back to {{ crumbs[0].name }}
               span.metabox__main {{ crumbs[1].name }}
 
-        PageLinks(v-if="links.length" :parentLink="parentLink" :links="links")
-        div(v-for="blok in body" :key='blok._uid')
+        PageLinks(v-if="links.length" :links="links" :parentLink="parentLink")
+
+        div(v-for="blok in story.content.body" :key='blok._uid')
           component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">
-import { useState } from 'vuex-composition-helpers'
-import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
+import { defineComponent, onMounted } from '@vue/composition-api'
 
 import useContext from '~/hooks/useContext'
 import usePageLinks from '~/hooks/usePageLinks'
+import useFetchStory from '~/hooks/useFetchStory'
+import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 import Page from '~/components/Page.vue'
 import PageLinks from '~/components/PageLinks.vue'
@@ -30,21 +32,19 @@ import BreadCrumbs from '~/components/BreadCrumbs.vue'
 export default defineComponent({
   components: { Page, PageLinks, BreadCrumbs, 'page-content': PageContent },
 
-  nuxtI18n: {
-    paths: {
-      en: '/about/:slug',
-      fr: '/a-propos/:slug'
-    }
-  },
-
   setup() {
     const { context } = useContext()
-    const { i18n } = useState(['i18n'])
+    const { story, fetchStory } = useFetchStory()
+    const { setTranslatedSlugs } = useTranslatedSlugs()
     const { links, parentLink } = usePageLinks('a-propos')
-    const slug = i18n.value.routeParams[context.i18n.locale]?.slug || context.route.params.slug
-    const path: ComputedRef<string> = computed(() => `a-propos/${slug}`)
 
-    return { path, links, parentLink }
+    onMounted(async () => {
+      const slug = context.store.state.i18n.routeParams[context.i18n.locale]?.slug || context.route.params.slug
+      await fetchStory(`a-propos/${slug}`)
+      await setTranslatedSlugs(story.value)
+    })
+
+    return { story, links, parentLink }
   }
 })
 </script>

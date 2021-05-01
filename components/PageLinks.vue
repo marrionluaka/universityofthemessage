@@ -3,12 +3,15 @@
   h2.page-links__title
     nuxt-link.capitalize(:to="parentLink.path") {{ parentLink.name }}
   ul.min-list
-    li(v-for="(link, index) in links" :key="index" :class="{ 'current_page_item': link.isActiveLink }")
+    li(v-for="(link, index) in links" :key="index" :class="{ 'current_page_item': isActive(link) }")
       nuxt-link.capitalize(:to="link.path") {{ link.name }}
 </template>
 
 <script lang="ts">
+import { useState } from 'vuex-composition-helpers'
 import { defineComponent, PropType } from '@vue/composition-api'
+
+import useContext from '~/hooks/useContext'
 import { ILink } from '~/hooks/usePageLinks'
 
 export default defineComponent({
@@ -21,6 +24,18 @@ export default defineComponent({
       type: Array as PropType<ILink[]>,
       required: true
     }
+  },
+
+  setup() {
+    const { context } = useContext()
+    const { i18n } = useState(['i18n'])
+
+    const isActive = (link: ILink) => {
+      const slug = i18n.value.routeParams[context.i18n.locale]?.slug
+      return link.path.includes(slug)
+    }
+
+    return { isActive }
   }
 })
 </script>
