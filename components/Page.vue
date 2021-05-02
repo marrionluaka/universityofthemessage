@@ -13,8 +13,6 @@ section.page
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
-
-import useStoryBridge from '~/hooks/useStoryBridge'
 import PageBanner from './PageBanner.vue'
 
 interface IBanner {
@@ -33,14 +31,11 @@ export default defineComponent({
   },
 
   setup({ story }) {
-    const { setStoryBridgeListeners } = useStoryBridge()
     const isPageBanner = (x: any) => x.component === 'page-banner'
     const bannerData: Ref<IBanner | null> = ref(null)
 
     onMounted(() => {
       const defaultData = { title: "l'Université du message", subtitle: "La parole de Dieu faite chair" }
-
-      setStoryBridgeListeners(story.content)
       bannerData.value = story.body.find(isPageBanner) || defaultData
     })
 
