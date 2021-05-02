@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
+import { pipe, split, last } from 'ramda'
 import { defineComponent, onMounted } from '@vue/composition-api'
 
-import useContext from '~/hooks/useContext'
 import usePageLinks from '~/hooks/usePageLinks'
 import useFetchStory from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
@@ -32,15 +32,21 @@ import BreadCrumbs from '~/components/BreadCrumbs.vue'
 export default defineComponent({
   components: { Page, PageLinks, BreadCrumbs, 'page-content': PageContent },
 
+  nuxtI18n: {
+    paths: {
+      en: '/about/:slug',
+      fr: '/a-propos/:slug'
+    }
+  },
+
   setup() {
-    const { context } = useContext()
     const { story, fetchStory } = useFetchStory()
     const { setTranslatedSlugs } = useTranslatedSlugs()
     const { links, parentLink } = usePageLinks('a-propos')
 
     onMounted(async () => {
-      const slug = context.store.state.i18n.routeParams[context.i18n.locale]?.slug || context.route.params.slug
-      await fetchStory(`a-propos/${slug}`)
+      const getCurrentPath = pipe(split('/'), last)
+      await fetchStory(`a-propos/${getCurrentPath(location.pathname)}`)
       await setTranslatedSlugs(story.value)
     })
 
