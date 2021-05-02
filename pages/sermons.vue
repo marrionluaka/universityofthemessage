@@ -3,21 +3,17 @@ section
   PageBanner(className='text-center text-white')
     h1.headline.headline--large Sermons
 
-  .container.container--narrow.mx-auto.px-6
+  .container.mx-auto.px-6
     section.flex.justify-center.items-center.py-4
       #player
 
     section
       ul.flex.flex-wrap.my-8.-mx-1(v-if="videos")
-        li.my-1.px-1(v-for="video in videos" :key="video.id" class="w-1/2 md:w-1/3 lg:w-1/4")
-          button.appearance-none(@click="setCurrentPlaying(video.snippet.resourceId.videoId)")
+        li.my-1.px-1.pb-4(v-for="video in videos" :key="video.id" class="w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0 lg:w-1/4")
+          button.w-full.appearance-none(@click="setCurrentPlaying(video.snippet.resourceId.videoId)")
             p
-              img(
-                :width="video.snippet.thumbnails.medium.width"
-                :height="video.snippet.thumbnails.medium.height"
-                :src="video.snippet.thumbnails.medium.url"
-              )
-            h3.yt-title {{ video.snippet.title }}
+              img.rounded-lg.w-full(:src="video.snippet.thumbnails.medium.url" :title="video.snippet.title" alt="")
+            h3.yt-title.p-2.text-base.font-bold.px-4 {{ video.snippet.title }}
 
     section
       Pagination(
@@ -82,3 +78,10 @@ export default defineComponent({
   }
 })
 </script>
+ 
+<style lang="stylus" scoped>
+.yt-title
+  text-overflow ellipsis
+  white-space nowrap
+  overflow hidden
+</style>
