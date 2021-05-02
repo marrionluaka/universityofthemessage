@@ -19,7 +19,7 @@ header.site-header
           li.current-menu-item
             nuxt-link.text-white.block.no-underline(:to="localePath('a-propos')") {{ $t('a-propos') }}
           li
-            nuxt-link.text-white.block.no-underline(to='#') Sermons
+            nuxt-link.text-white.block.no-underline(to='/sermons') Sermons
           li
             LanguageSwitch
           //- li
