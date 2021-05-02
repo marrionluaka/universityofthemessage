@@ -14,7 +14,6 @@ export default function useFetchStory() {
   const fetchStory = async (page: string) => {
     try {
       const { data } = await storyApi.get(`cdn/stories/${locale}${page}`, { version })
-
       story.value = data.story
       setStoryBridgeListeners(data.story.content)
     } catch (e) {
