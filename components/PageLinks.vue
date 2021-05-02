@@ -1,7 +1,7 @@
 <template lang="pug">
 .page-links
   h2.page-links__title
-    nuxt-link.capitalize(:to="parentLink.path") {{ parentLink.name }}
+    nuxt-link.capitalize(:to="parentLink.path") {{ $t(parentLink.name) }}
   ul.min-list
     li(v-for="(link, index) in links" :key="index" :class="{ 'current_page_item': isActive(link) }")
       nuxt-link.capitalize(:to="link.path") {{ link.name }}

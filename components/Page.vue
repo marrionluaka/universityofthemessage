@@ -8,18 +8,14 @@ section.page
 
     .container.container--narrow.mx-auto.px-6
       slot
-        BreadCrumbs
         component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 
-
 import useStoryBridge from '~/hooks/useStoryBridge'
-
 import PageBanner from './PageBanner.vue'
-import BreadCrumbs from './BreadCrumbs.vue'
 
 interface IBanner {
   title: string
@@ -27,7 +23,7 @@ interface IBanner {
 }
 
 export default defineComponent({
-  components: { PageBanner, BreadCrumbs },
+  components: { PageBanner },
 
   props: {
     story: {

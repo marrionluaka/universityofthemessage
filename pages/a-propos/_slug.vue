@@ -2,16 +2,7 @@
   section
     Page(v-if="story" :story="story.content")
       template
-        BreadCrumbs.metabox.metabox--position-up.metabox--with-home-link
-          template(#default="{ crumbs }")
-            p
-              nuxt-link.metabox__blog-home-link(:to="crumbs[0].path")
-                i.fa.fa-home(aria-hidden='true')
-                |  Back to {{ crumbs[0].name }}
-              span.metabox__main {{ crumbs[1].name }}
-
         PageLinks(v-if="links.length" :links="links" :parentLink="parentLink")
-
         div(v-for="blok in story.content.body" :key='blok._uid')
           component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
@@ -27,10 +18,9 @@ import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 import Page from '~/components/Page.vue'
 import PageLinks from '~/components/PageLinks.vue'
 import PageContent from '~/components/PageContent.vue'
-import BreadCrumbs from '~/components/BreadCrumbs.vue'
 
 export default defineComponent({
-  components: { Page, PageLinks, BreadCrumbs, 'page-content': PageContent },
+  components: { Page, PageLinks, 'page-content': PageContent },
 
   nuxtI18n: {
     paths: {
