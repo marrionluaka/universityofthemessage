@@ -4,6 +4,10 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
+  env: {
+    YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'University Of The Message',
@@ -66,7 +70,10 @@ export default {
     // Doc: https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
 
-    'nuxt-fontawesome'
+    'nuxt-fontawesome',
+
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/axios'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
