@@ -4,8 +4,8 @@ section
     h1.headline.headline--large Sermons
 
   .container.mx-auto.px-6
-    section.flex.justify-center.items-center.py-4
-      #player.player 
+    section.flex.justify-center.items-center.py-4(v-if="currentVideoId")
+      YouTubePlayer(:videoId="currentVideoId")
     
     section.flex.justify-center.items-center.py-4
       a.yt-subscribe(target='_blank' href='https://www.youtube.com/channel/UCGFGRz9g8urP8GsgTzV48hg?sub_confirmation=1')
@@ -21,7 +21,7 @@ section
         :per-page="resultsPerPage"
       )
 
-    section
+    section.yt-list
       ul.flex.flex-wrap.my-4.-mx-1(v-if="videos")
         li.my-1.px-1.pb-4(v-for="video in videos" :key="video.id" class="w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0 lg:w-1/4")
           button.w-full.appearance-none(@click="setCurrentPlaying(video.snippet.resourceId.videoId)")
@@ -42,22 +42,24 @@ section
 <script lang="ts">
 // @ts-ignore
 import Pagination from 'vue-pagination-2'
-import { defineComponent, watch, onMounted } from '@vue/composition-api'
+import { defineComponent, watch, onMounted, ref, Ref } from '@vue/composition-api'
 
-import useYTPlayer from '~/hooks/useYTPlayer'
 import usePagination from '~/hooks/usePagination'
 import useYTPlaylist from '~/hooks/useYTPlaylist'
-import PageBanner from '~/components/PageBanner.vue'
 
+import PageBanner from '~/components/PageBanner.vue'
+import YouTubePlayer from '~/components/YouTubePlayer.vue'
 import CustomPagination from '~/components/CustomPagination.vue'
 
 export default defineComponent({
-  components: { PageBanner, Pagination },
+  components: { PageBanner, Pagination, YouTubePlayer },
 
   setup() {
-    const { player, initPlayer, setCurrentPlaying } = useYTPlayer()
     const { videos, setNewPlaylist, populatePlaylist } = useYTPlaylist()
     const { totalResults, resultsPerPage, paginate, currentPage } = usePagination()
+
+    const currentVideoId: Ref<string> = ref('')
+    const setCurrentPlaying = (videoId: string) => (currentVideoId.value = videoId)
 
     watch(
       () => currentPage.value,
@@ -67,16 +69,15 @@ export default defineComponent({
         } else {
           await setNewPlaylist('prevPage')
         }
+        document.querySelector('.yt-subscribe')?.scrollIntoView({behavior: 'smooth'})
       }
     )
 
     onMounted(async () => {
       await populatePlaylist((data: any) => {
-        initPlayer()
-
         totalResults.value = data.pageInfo.totalResults
         resultsPerPage.value = data.pageInfo.resultsPerPage
-        player.value.load(data.items[0].snippet.resourceId.videoId)
+        currentVideoId.value = data.items[0].snippet.resourceId.videoId
       })
     })
 
@@ -86,6 +87,7 @@ export default defineComponent({
       currentPage,
       totalResults,
       resultsPerPage,
+      currentVideoId,
       setCurrentPlaying,
       opts: { template: CustomPagination }
     }
@@ -94,13 +96,6 @@ export default defineComponent({
 </script>
  
 <style lang="stylus">
-#player
-  min-height 360px
-  +breakpoint(mobile-landscape)
-    min-height 460px
-  +breakpoint(tablet-landscape-up)
-    min-height 608px
-
 .yt-subscribe
   color $white
   padding 5px 10px
