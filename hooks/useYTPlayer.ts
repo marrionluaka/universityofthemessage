@@ -2,7 +2,7 @@
 import YTPlayer from 'yt-player'
 import { ref, Ref } from '@vue/composition-api'
 
-export default function useYTPlayer(opts = { width: 1080, height: 608 }) {
+export default function useYTPlayer(opts = { width: 1080 }) {
   let player: Ref<any> = ref(null)
 
   const setCurrentPlaying = (id: string) => {
