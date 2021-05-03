@@ -23,11 +23,7 @@ section
 
     section.yt-list
       ul.flex.flex-wrap.my-4.-mx-1(v-if="videos")
-        li.my-1.px-1.pb-4(v-for="video in videos" :key="video.id" class="w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0 lg:w-1/4")
-          button.w-full.appearance-none(@click="setCurrentPlaying(video.snippet.resourceId.videoId)")
-            p
-              img.rounded-lg.w-full(:src="video.snippet.thumbnails.medium.url" :title="video.snippet.title" alt="")
-            h3.yt-title.p-2.text-sm.font-bold.px-4 {{ video.snippet.title }}
+        YouTubeCard(v-for="video in videos" :key="video.id" :video="video" @click="setCurrentPlaying")
 
     section.pb-4
       Pagination(
@@ -48,11 +44,12 @@ import usePagination from '~/hooks/usePagination'
 import useYTPlaylist from '~/hooks/useYTPlaylist'
 
 import PageBanner from '~/components/PageBanner.vue'
+import YouTubeCard from '~/components/YouTubeCard.vue'
 import YouTubePlayer from '~/components/YouTubePlayer.vue'
 import CustomPagination from '~/components/CustomPagination.vue'
 
 export default defineComponent({
-  components: { PageBanner, Pagination, YouTubePlayer },
+  components: { PageBanner, Pagination, YouTubeCard, YouTubePlayer },
 
   setup() {
     const { videos, setNewPlaylist, populatePlaylist } = useYTPlaylist()
@@ -113,9 +110,4 @@ export default defineComponent({
     -webkit-box-shadow none
     box-shadow none
     margin 0
-
-.yt-title
-  text-overflow ellipsis
-  white-space nowrap
-  overflow hidden
 </style>
