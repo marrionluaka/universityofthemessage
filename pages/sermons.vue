@@ -21,8 +21,8 @@ section
         :per-page="resultsPerPage"
       )
 
-    section.yt-list
-      ul.flex.flex-wrap.my-4.-mx-1(v-if="videos")
+    YouTubePlayList(:currentPage="currentPage" @on-populated-list="onPopulatedList")
+      template(#default="{ videos }")
         YouTubeCard(v-for="video in videos" :key="video.id" :video="video" @click="setCurrentPlaying")
 
     section.pb-4
@@ -38,53 +38,35 @@ section
 <script lang="ts">
 // @ts-ignore
 import Pagination from 'vue-pagination-2'
-import { defineComponent, watch, onMounted, ref, Ref } from '@vue/composition-api'
+import { defineComponent, ref, Ref } from '@vue/composition-api'
 
 import usePagination from '~/hooks/usePagination'
-import useYTPlaylist from '~/hooks/useYTPlaylist'
-
 import PageBanner from '~/components/PageBanner.vue'
-import YouTubeCard from '~/components/YouTubeCard.vue'
 import YouTubePlayer from '~/components/YouTubePlayer.vue'
+import YouTubePlayList from '~/components/YouTubePlayList.vue'
 import CustomPagination from '~/components/CustomPagination.vue'
 
 export default defineComponent({
-  components: { PageBanner, Pagination, YouTubeCard, YouTubePlayer },
+  components: { PageBanner, Pagination, YouTubePlayer, YouTubePlayList },
 
   setup() {
-    const { videos, setNewPlaylist, populatePlaylist } = useYTPlaylist()
     const { totalResults, resultsPerPage, paginate, currentPage } = usePagination()
 
     const currentVideoId: Ref<string> = ref('')
     const setCurrentPlaying = (videoId: string) => (currentVideoId.value = videoId)
-
-    watch(
-      () => currentPage.value,
-      async (page: number, oldPage: number) => {
-        if (page > oldPage) {
-          await setNewPlaylist('nextPage')
-        } else {
-          await setNewPlaylist('prevPage')
-        }
-        document.querySelector('.yt-subscribe')?.scrollIntoView({behavior: 'smooth'})
-      }
-    )
-
-    onMounted(async () => {
-      await populatePlaylist((data: any) => {
-        totalResults.value = data.pageInfo.totalResults
-        resultsPerPage.value = data.pageInfo.resultsPerPage
-        currentVideoId.value = data.items[0].snippet.resourceId.videoId
-      })
-    })
+    const onPopulatedList = (data: any) => {
+      totalResults.value = data.pageInfo.totalResults
+      resultsPerPage.value = data.pageInfo.resultsPerPage
+      currentVideoId.value = data.items[0].snippet.resourceId.videoId
+    }
 
     return {
-      videos,
       paginate,
       currentPage,
       totalResults,
       resultsPerPage,
       currentVideoId,
+      onPopulatedList,
       setCurrentPlaying,
       opts: { template: CustomPagination }
     }
