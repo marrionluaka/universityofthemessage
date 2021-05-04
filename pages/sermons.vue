@@ -23,7 +23,13 @@ section
 
     YouTubePlayList(:currentPage="currentPage" @on-populated-list="onPopulatedList")
       template(#default="{ videos }")
-        YouTubeCard(v-for="video in videos" :key="video.id" :video="video" @click="setCurrentPlaying")
+        YouTubeCard(
+          v-for="video in videos"
+          :key="video.id"
+          :video="video"
+          :isPlaying="currentVideoId === video.snippet.resourceId.videoId"
+          @click="setCurrentPlaying"
+        )
 
     section.pb-4
       Pagination(
@@ -50,9 +56,9 @@ export default defineComponent({
   components: { PageBanner, Pagination, YouTubePlayer, YouTubePlayList },
 
   setup() {
+    const currentVideoId: Ref<string> = ref('')
     const { totalResults, resultsPerPage, paginate, currentPage } = usePagination()
 
-    const currentVideoId: Ref<string> = ref('')
     const setCurrentPlaying = (videoId: string) => (currentVideoId.value = videoId)
     const onPopulatedList = (data: any) => {
       totalResults.value = data.pageInfo.totalResults

@@ -1,6 +1,6 @@
 <template lang="pug">
 section(ref="ytList")
-  ul.flex.flex-wrap.my-4.-mx-1(v-if="videos")
+  ul.flex.flex-wrap.my-4.-mx-2(v-if="videos")
     slot(:videos="videos")
 </template>
 
