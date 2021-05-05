@@ -4,7 +4,7 @@ li.yt-card.my-1.px-2.pb-4(
   :class="[isPlaying ? 'playing' : '', 'w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0 lg:w-1/4']"
 )
   button.w-full.appearance-none(@click="$emit('click', video.snippet.resourceId.videoId)")
-    .rounded-lg.yt-img(
+    .rounded-md.yt-img(
       :title="video.snippet.title"
       :style="{ 'background-image': `url(${video.snippet.thumbnails.medium.url})`}"
     )

@@ -22,8 +22,8 @@ header.site-header
             nuxt-link.text-white.block.no-underline(to='/sermons') Sermons
           li
             LanguageSwitch
-          //- li
-          //-   nuxt-link.text-white.block.no-underline(to='/events') Events
+          li
+            nuxt-link.text-white.block.no-underline(:to="localePath('evenements')") {{ $t('evenements') }}
           li
             nuxt-link.text-white.block.no-underline(to='#') Contact
           //- li

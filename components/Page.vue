@@ -36,7 +36,7 @@ export default defineComponent({
 
     onMounted(() => {
       const defaultData = { title: "l'Université du message", subtitle: "La parole de Dieu faite chair" }
-      bannerData.value = story.body.find(isPageBanner) || defaultData
+      bannerData.value = story.body?.find(isPageBanner) || defaultData
     })
 
     return { bannerData }
