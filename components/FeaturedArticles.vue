@@ -1,21 +1,19 @@
 <template lang="pug">
 div(v-editable='blok')
-  ul.flex.flex-col.py-6.mb-6
-    li(v-for="article in featuredAricles" :key="article._uuid") {{ article.link }}
+  ul.flex.py-8.mb-6
+    li(v-for="article in featuredAricles" :key="article.uuid")
+      nuxt-link(:to="article.link")
+        component(v-if="$options.components[blok.comp]" :article="article.content" :is="blok.comp")
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, Ref, onMounted } from '@vue/composition-api'
-
-import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
 
 import { useContext } from '~/hooks/useContext'
 import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
-  components: { ArticlesTeaser },
-
   props: {
     blok: {
       type: Object,
@@ -38,7 +36,7 @@ export default defineComponent({
 
       featuredAricles.value = stories
         .filter((x: any) => !x.is_startpage)
-        .slice(0, props.blok.quantity)
+        .slice(0, props.blok.quantity || 3)
         .reduce((acc: any, story: any, i: number) => {
           acc[i] = { ...story, link: getTranslatedSlug(story, props.blok.path.replace(/\/$/, '')) }
           return acc

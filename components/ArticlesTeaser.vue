@@ -1,10 +1,11 @@
 <template lang="pug">
-nuxt-link(:to='articleLink')
-  h2.font-serif.pt-2.pb-1.text-2xl.font-bold(class="md:text-3xl") {{ articleName }}
-  p.article-date.uppercase.pb-6.leading-relaxed
-    | POSTED ON 
-    span {{ articleDate | formatDate }}
-  p.pb-6.leading-loose {{ articleContent.excerpt }}
+div
+  img(:src="article.featured_image.filename")
+  h2.font-serif.pt-2.pb-1.text-2xl.font-bold(class="md:text-3xl") {{ article.title }}
+  //- p.article-date.uppercase.pb-6.leading-relaxed
+  //-   | POSTED ON 
+  //-   span {{ articleDate | formatDate }}
+  //- p.pb-6.leading-loose {{ articleContent.excerpt }}
 </template>
 
 <script lang="ts">
@@ -12,20 +13,8 @@ import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
-    articleContent: {
+    article: {
       type: Object,
-      required: true
-    },
-    articleLink: {
-      type: String,
-      required: true
-    },
-    articleName: {
-      type: String,
-      required: true
-    },
-    articleDate: {
-      type: String,
       required: true
     }
   },
