@@ -26,8 +26,8 @@ main
 import { defineComponent, onMounted } from '@vue/composition-api'
 
 import { useContext } from '~/hooks/useContext'
-import useFetchStory from '~/hooks/useFetchStory'
 import useStoryBridge from '~/hooks/useStoryBridge'
+import { useFetchStory } from '~/hooks/useFetchStory'
 import useFetchArticles from '~/hooks/useFetchArticles'
 
 import MapInfo from '~/components/MapInfo.vue'

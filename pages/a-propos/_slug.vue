@@ -12,7 +12,7 @@ import { pipe, split, last } from 'ramda'
 import { defineComponent, onMounted } from '@vue/composition-api'
 
 import usePageLinks from '~/hooks/usePageLinks'
-import useFetchStory from '~/hooks/useFetchStory'
+import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 import Page from '~/components/Page.vue'

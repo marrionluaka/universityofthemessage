@@ -8,7 +8,7 @@ import { pipe, split, last } from 'ramda'
 import { defineComponent, onMounted } from '@vue/composition-api'
 
 import Page from '~/components/Page.vue'
-import useFetchStory from '~/hooks/useFetchStory'
+import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({

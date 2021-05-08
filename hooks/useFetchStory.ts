@@ -3,7 +3,7 @@ import { computed, ref, Ref } from '@vue/composition-api'
 import { useContext } from '~/hooks/useContext'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
-export default function useFetchStory() {
+export const useFetchStory = () => {
   const { context, storyApi } = useContext()
   const { setStoryBridgeListeners } = useStoryBridge()
 

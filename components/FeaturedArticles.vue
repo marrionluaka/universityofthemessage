@@ -1,17 +1,16 @@
 <template lang="pug">
 div(v-editable='blok')
   ul.flex.flex-col.py-6.mb-6
-    | Featured Articles
+    li(v-for="article in featuredAricles" :key="article._uuid") {{ article.link }}
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ComputedRef, onMounted } from '@vue/composition-api'
+import { defineComponent, ref, Ref, onMounted } from '@vue/composition-api'
 
-import useFetchArticles from '~/hooks/useFetchArticles'
 import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
 
 import { useContext } from '~/hooks/useContext'
-import useFetchStory from '~/hooks/useFetchStory'
+import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
@@ -25,6 +24,8 @@ export default defineComponent({
   },
 
   setup(props) {
+    const featuredAricles: Ref<any> = ref([])
+
     const { version } = useFetchStory()
     const { context, storyApi } = useContext()
     const { getTranslatedSlug } = useTranslatedSlugs()
@@ -34,17 +35,21 @@ export default defineComponent({
       const {
         data: { stories }
       } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.blok.path}`, version: version.value })
-      // console.log('articles', props.blok.path, stories.filter((x: any) => !x.is_startpage))
-      stories
+
+      featuredAricles.value = stories
         .filter((x: any) => !x.is_startpage)
-        .forEach((story: any) => {
-          console.log('link', getTranslatedSlug(story, props.blok.path.replace(/\/$/, '')))
-        })
+        .slice(0, props.blok.quantity)
+        .reduce((acc: any, story: any, i: number) => {
+          acc[i] = { ...story, link: getTranslatedSlug(story, props.blok.path.replace(/\/$/, '')) }
+          return acc
+        }, [])
     }
 
     onMounted(async () => {
       await fetchArticles()
     })
+
+    return { featuredAricles }
   }
 })
 </script>

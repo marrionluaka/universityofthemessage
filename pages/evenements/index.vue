@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent, onMounted } from '@vue/composition-api'
 
-import useFetchStory from '~/hooks/useFetchStory'
+import { useFetchStory } from '~/hooks/useFetchStory'
 import Page from '~/components/Page.vue'
 
 export default defineComponent({

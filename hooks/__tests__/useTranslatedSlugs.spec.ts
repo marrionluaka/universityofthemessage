@@ -1,25 +1,8 @@
 import CompositionApi from '@vue/composition-api'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 
+import { useContextData } from '~/mocks'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
-
-const useContextData = {
-  context: {
-    app: {
-      $storyapi: {}
-    },
-    i18n: {
-      locale: 'en',
-      t: (path: string) => {
-        if (useContextData.context.i18n.locale === 'en' && path === 'a-propos') return 'about'
-        return 'a-propos'
-      }
-    },
-    store: {
-      dispatch: () => {}
-    }
-  }
-}
 
 jest.mock('@/hooks/useContext', () => ({ useContext: () => useContextData }))
 
