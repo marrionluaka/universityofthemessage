@@ -1,6 +1,8 @@
 {
-  "a-propos": "A Propos",
   "sur": "sur",
-  "abonnez-vous": "Abonnez-vous à la Chaîne",
-  "evenements": "Événements"
+  "a-propos": "a-propos",
+  "a-propos-nav": "A Propos",
+  "evenements": "evenements",
+  "evenements-nav": "Événements",
+  "abonnez-vous": "Abonnez-vous à la Chaîne"
 }

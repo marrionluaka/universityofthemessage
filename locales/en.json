@@ -1,6 +1,8 @@
 {
   "sur": "of",
-  "a-propos": "About",
-  "evenements": "Events",
+  "a-propos": "about",
+  "a-propos-nav": "About",
+  "evenements": "events",
+  "evenements-nav": "Events",
   "abonnez-vous": "Subscribe to the Channel"
 }

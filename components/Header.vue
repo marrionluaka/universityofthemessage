@@ -17,13 +17,13 @@ header.site-header
       nav
         ul.list-none.p-0.m-0(class="md:flex md:justify-end")
           li.current-menu-item
-            nuxt-link.text-white.block.no-underline(:to="localePath('a-propos')") {{ $t('a-propos') }}
+            nuxt-link.text-white.block.no-underline(:to="localePath('a-propos')") {{ $t('a-propos-nav') }}
           li
             nuxt-link.text-white.block.no-underline(to='/sermons') Sermons
           li
             LanguageSwitch
           li
-            nuxt-link.text-white.block.no-underline(:to="localePath('evenements')") {{ $t('evenements') }}
+            nuxt-link.text-white.block.no-underline(:to="localePath('evenements')") {{ $t('evenements-nav') }}
           li
             nuxt-link.text-white.block.no-underline(to='#') Contact
           //- li
