@@ -1,25 +1,18 @@
 <template lang="pug">
 div(v-editable='blok')
   ul.flex.flex-col.py-6.mb-6
-    li.flex-auto.px-6(v-for='article in sortedArticles' :key='article._uid')
-      ArticlesTeaser(
-        v-if='article.content'
-        :article-link='article.full_slug'
-        :article-name="article.name"
-        :article-content='article.content'
-        :article-date='article.first_published_at'
-      )
-      p.px-4.py-2.text-white.bg-red-700.text-center.rounded(v-else)
-        | This content loads on save. 
-        strong Save the entry &amp; reload.
-      hr
+    | Featured Articles
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
+import { defineComponent, computed, ComputedRef, onMounted } from '@vue/composition-api'
 
 import useFetchArticles from '~/hooks/useFetchArticles'
 import ArticlesTeaser from '~/components/ArticlesTeaser.vue'
+
+import { useContext } from '~/hooks/useContext'
+import useFetchStory from '~/hooks/useFetchStory'
+import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
   components: { ArticlesTeaser },
@@ -32,15 +25,26 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { articles } = useFetchArticles()
+    const { version } = useFetchStory()
+    const { context, storyApi } = useContext()
+    const { getTranslatedSlug } = useTranslatedSlugs()
+    const locale = context.i18n.locale === 'fr' ? '' : 'en/'
 
-    const sortedArticles: ComputedRef<string[]> = computed(() => {
-      return articles.value
-        .filter((article: any) => props.blok.articles.includes(article.uuid))
-        .sort((a: any, b: any) => props.blok.articles.indexOf(a.uuid) - props.blok.articles.indexOf(b.uuid))
+    const fetchArticles = async () => {
+      const {
+        data: { stories }
+      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.blok.path}`, version: version.value })
+      // console.log('articles', props.blok.path, stories.filter((x: any) => !x.is_startpage))
+      stories
+        .filter((x: any) => !x.is_startpage)
+        .forEach((story: any) => {
+          console.log('link', getTranslatedSlug(story, props.blok.path.replace(/\/$/, '')))
+        })
+    }
+
+    onMounted(async () => {
+      await fetchArticles()
     })
-
-    return { sortedArticles }
   }
 })
 </script>

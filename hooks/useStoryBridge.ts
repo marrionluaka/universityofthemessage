@@ -1,5 +1,5 @@
 import { Ref } from '@vue/composition-api'
-import useContext from '~/hooks/useContext'
+import { useContext } from '~/hooks/useContext'
 
 export default function useStoryBridge() {
   const { context, storyBridge } = useContext()

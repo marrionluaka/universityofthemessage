@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
 
-import useContext from '~/hooks/useContext'
+import { useContext } from '~/hooks/useContext'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
 import Article from '~/components/Article.vue'

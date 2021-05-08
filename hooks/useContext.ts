@@ -1,10 +1,11 @@
 import { getCurrentInstance } from '@vue/composition-api'
 
-export default function useContext() {
+export const useContext = () => {
   // @ts-ignore
-  const { context } = getCurrentInstance()?.root.proxy
+  const { proxy } = getCurrentInstance()?.root
+  const { context } = proxy
   const storyApi = context.app.$storyapi
   const storyBridge = context.app.$storybridge
 
-  return { context, storyApi, storyBridge }
+  return { proxy, context, storyApi, storyBridge }
 }

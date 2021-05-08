@@ -5,14 +5,15 @@ section(ref="ytList")
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref, watch } from '@vue/composition-api'
+import { defineComponent, onMounted, PropType, ref, Ref, watch } from '@vue/composition-api'
 import useYTPlaylist from '~/hooks/useYTPlaylist'
 
 export default defineComponent({
   props: {
     currentPage: {
-      type: Number,
-      required: true
+      type: Number as PropType<number>,
+      required: false,
+      default: 0
     }
   },
 
@@ -22,13 +23,13 @@ export default defineComponent({
 
     watch(
       () => props.currentPage,
-      async (page: number, oldPage: number) => {
+      async (page: number, oldPage: number): Promise<void> => {
         if (page > oldPage) {
           await setNewPlaylist('nextPage')
         } else {
           await setNewPlaylist('prevPage')
         }
-        ytList.value?.scrollIntoView({behavior: 'smooth'})
+        ytList.value?.scrollIntoView({ behavior: 'smooth' })
       }
     )
 

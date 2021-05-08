@@ -1,5 +1,5 @@
 import { ref, Ref } from "@vue/composition-api"
-import useContext from '~/hooks/useContext'
+import { useContext } from '~/hooks/useContext'
 
 export default function useYTPlaylist() {
   const { context } = useContext()

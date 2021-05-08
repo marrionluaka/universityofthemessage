@@ -8,7 +8,8 @@ section.page
 
     .container.container--narrow.mx-auto.px-6
       slot
-        component(v-for='blok in story.body' :key='blok._uid' :blok='blok' :is='blok.component')
+        div(v-for="blok in story.body" :key='blok._uid')
+          component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">

@@ -1,10 +1,10 @@
 import { ref, Ref } from '@vue/composition-api'
 
-const articles: Ref<string[]> = ref([])
+const articles: Ref<any[]> = ref([])
 const loaded: Ref<string> = ref('0')
 
 export default function useFetchArticles() {
-  const setArticles = (entries: string[]) => {
+  const setArticles = (entries: any[]) => {
     articles.value = entries
   }
 

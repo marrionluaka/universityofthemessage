@@ -11,7 +11,7 @@
 import { useState } from 'vuex-composition-helpers'
 import { defineComponent, PropType } from '@vue/composition-api'
 
-import useContext from '~/hooks/useContext'
+import { useContext } from '~/hooks/useContext'
 import { ILink } from '~/hooks/usePageLinks'
 
 export default defineComponent({
