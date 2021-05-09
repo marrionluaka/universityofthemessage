@@ -1,0 +1,62 @@
+/* =================== Barlow ================== */
+@font-face {
+  font-family: "Barlow";
+  font-weight: 100;
+  src: url('../webfonts/Barlow/Barlow-Light.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 400;
+  src: url('../webfonts/Barlow/Barlow-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 500;
+  src: url('../webfonts/Barlow/Barlow-Medium.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 600;
+  src: url('../webfonts/Barlow/Barlow-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 700;
+  src: url('../webfonts/Barlow/Barlow-Black.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 800;
+  src: url('../webfonts/Barlow/Barlow-Bold.ttf');
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-weight: 900;
+  src: url('../webfonts/Barlow/Barlow-ExtraBold.ttf');
+}
+
+
+/* =================== Gayathri ================== */
+@font-face {
+  font-family: "Gayathri";
+  font-weight: 100;
+  src: url('../webfonts/Gayathri/Gayathri-Thin.ttf');
+}
+
+@font-face {
+  font-family: "Gayathri";
+  font-weight: 400;
+  src: url('../webfonts/Gayathri/Gayathri-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Gayathri";
+  font-weight: bold;
+  src: url('../webfonts/Gayathri/Gayathri-Bold.ttf');
+}

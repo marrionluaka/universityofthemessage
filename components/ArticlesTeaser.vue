@@ -1,11 +1,7 @@
 <template lang="pug">
 div
-  img(:src="article.featured_image.filename")
+  FeaturedImage(:src="article.featured_image.filename")
   h2.font-serif.pt-2.pb-1.text-2xl.font-bold(class="md:text-3xl") {{ article.title }}
-  //- p.article-date.uppercase.pb-6.leading-relaxed
-  //-   | POSTED ON 
-  //-   span {{ articleDate | formatDate }}
-  //- p.pb-6.leading-loose {{ articleContent.excerpt }}
 </template>
 
 <script lang="ts">

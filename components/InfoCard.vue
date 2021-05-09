@@ -1,10 +1,10 @@
 <template lang="pug">
-.block-about-and-missions.my-1.px-4
-  nuxt-link.inline-block.link-block-about.w-inline-block(:to="blok.lien.url")
-    .image-block-about(:style="{ 'background-image': `url(${blok.image.filename})` }")
-    .block-white
-      h3.block-title {{ blok.titre }}
-      p.paragraph {{ blok.extrait }}
+.my-1.px-4
+  nuxt-link.inline-block(:to="blok.lien.url")
+    FeaturedImage.h-64(:src="blok.image.filename")
+    .block
+      h3.block__title(class="mb-2.5") {{ blok.titre }}
+      p.block__paragraph {{ blok.extrait }}
 </template>
 
 <script lang="ts">
@@ -21,10 +21,10 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.image-block-about {
-  border-radius: 5px;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+.block
+  @apply pt-8 px-16 pb-16
+  &__title
+    @apply mt-5
+  &__paragraph
+    @apply text-sm
 </style>
