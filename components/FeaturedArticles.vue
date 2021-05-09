@@ -47,9 +47,7 @@ export default defineComponent({
         }, [])
     }
 
-    onMounted(async () => {
-      await fetchArticles()
-    })
+    onMounted(async () => await fetchArticles())
 
     return { featuredAricles }
   }
