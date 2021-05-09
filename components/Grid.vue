@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.py-8.mb-6(v-editable="blok")
+.flex.flex-wrap.justify-between.py-8.mb-6(v-editable="blok")
   component(:key="blok._uid" v-for="blok in blok.blocs" :blok="blok" :is="blok.component")
 </template>
 

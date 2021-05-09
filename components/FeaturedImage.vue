@@ -17,9 +17,6 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .img
-  background-size cover
-  border-top-left-radius 5px
-  border-top-right-radius 5px
+  @apply bg-cover bg-no-repeat rounded-tl-md rounded-tr-md
   background-position 50% 50%
-  background-repeat no-repeat
 </style>

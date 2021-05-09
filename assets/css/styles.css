@@ -1,10 +1,13 @@
 .container {
-  max-width: 1300px;
+  max-width: 1170px;
   padding: 0 16px;
   position: relative;
 }
 .container--narrow {
   max-width: 960px;
+}
+.smoke {
+  background-color: #f3f3f3;
 }
 body {
   font-family: Barlow, sans-serif;

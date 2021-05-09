@@ -18,8 +18,9 @@ main
     //-         YouTubeCard(v-for="video in videos.slice(0, 5)" :key="video.id" :video="video" @click="() => {}")
 
     section(v-for="blok in story.content.body" :key="blok._uid" :class="blok.component")
-      .container.container--narrow.mx-auto.px-6.mt-12
-        component(v-if="$options.components[blok.component]" :blok="blok" :is="blok.component")
+      div.py-20(:class="[blok.class || '']")
+        .container.mx-auto.px-6.mt-12
+          component(v-if="$options.components[blok.component]" :blok="blok" :is="blok.component")
 </template>
 
 <script lang="ts">
