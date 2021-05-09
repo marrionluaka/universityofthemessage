@@ -1,9 +1,6 @@
 <template lang="pug">
-div(v-editable='blok')
-  ul.flex.py-8.mb-6
-    li(v-for="article in featuredAricles" :key="article.uuid")
-      nuxt-link(:to="article.link")
-        component(v-if="$options.components[blok.comp]" :article="article.content" :is="blok.comp")
+.flex.flex-wrap.justify-between.py-8.mb-6(v-editable='blok')
+  component(v-for="article in featuredAricles" :key="article.uuid" :article="article.content" :is="blok.comp")
 </template>
 
 <script lang="ts">
@@ -38,7 +35,14 @@ export default defineComponent({
         .filter((x: any) => !x.is_startpage)
         .slice(0, props.blok.quantity || 3)
         .reduce((acc: any, story: any, i: number) => {
-          acc[i] = { ...story, link: getTranslatedSlug(story, props.blok.path.replace(/\/$/, '')) }
+          acc[i] = {
+            ...story,
+            content: {
+              ...story.content,
+              link: getTranslatedSlug(story, props.blok.path.replace(/\/$/, ''))
+            }
+          }
+
           return acc
         }, [])
     }

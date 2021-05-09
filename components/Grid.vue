@@ -12,10 +12,6 @@ export default defineComponent({
       type: Object,
       required: true
     }
-  },
-
-  setup() {}
+  }
 })
 </script>
-
-<style lang="stylus" scoped></style>

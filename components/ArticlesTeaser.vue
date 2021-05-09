@@ -1,7 +1,17 @@
 <template lang="pug">
-div
-  FeaturedImage(:src="article.featured_image.filename")
-  h2.font-serif.pt-2.pb-1.text-2xl.font-bold(class="md:text-3xl") {{ article.title }}
+div(class="my-1 px-3 py-3 w-full md:w-1/2 lg:py-0 lg:w-1/3")
+  FeaturedCard(
+    :link="article.link"
+    :title="article.title"
+    :excerpt="article.excerpt"
+    :src="article.featured_image.filename"
+  )
+    template(#featured-image)
+      FeaturedImage(:src="article.featured_image.filename")
+    template(#default)
+      .h-full.rounded-bl-md.rounded-br-md.p-4.bg-white.text-center(class="px-8 md:px-16")
+        h3(class="text-2xl") {{ article.title }}
+        p(class="text-sm lg:text-base") {{ article.excerpt || 'some text describing what is happening in the scene' }}
 </template>
 
 <script lang="ts">
@@ -25,8 +35,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="stylus">
-.article-date
-  font-size 10px
-
+<style lang="stylus" scoped>
+.img
+  min-height 13rem
 </style>
