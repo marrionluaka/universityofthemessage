@@ -19,7 +19,7 @@ main
 
     section(v-for="blok in story.content.body" :key="blok._uid" :class="blok.component")
       div.py-10(:class="[blok.class || '', 'md:py-16']")
-        .container.mx-auto.px-6.mt-12
+        .container.mx-auto.px-6
           component(v-if="$options.components[blok.component]" :blok="blok" :is="blok.component")
 </template>
 
@@ -73,8 +73,3 @@ export default defineComponent({
 })
 </script>
 
-<style lang="stylus" scoped>
-.info-cart {
-  @apply: flex flex-wrap my-4 -mx-4;
-}
-</style>

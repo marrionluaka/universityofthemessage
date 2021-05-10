@@ -1,14 +1,14 @@
 <template lang="pug">
-.flex.flex-wrap.justify-between.py-8.mb-6(v-editable='blok')
-  component(v-for="article in featuredAricles" :key="article.uuid" :article="article.content" :is="blok.comp")
+.featured-articles(v-editable='blok')
+  h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
+  .break
+  p.featured-articles__paragraph {{ blok.subtitle }}
+  ArticleList(:path="blok.path" :quantity="blok.quantity")
+  nuxt-link.featured-articles__btn(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref, onMounted } from '@vue/composition-api'
-
-import { useContext } from '~/hooks/useContext'
-import { useFetchStory } from '~/hooks/useFetchStory'
-import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
+import { computed, ComputedRef, defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
@@ -17,49 +17,32 @@ export default defineComponent({
       required: true
     }
   },
-
   setup(props) {
-    const featuredAricles: Ref<any> = ref([])
-
-    const { version } = useFetchStory()
-    const { context, storyApi } = useContext()
-    const { getTranslatedSlug } = useTranslatedSlugs()
-    const locale = context.i18n.locale === 'fr' ? '' : 'en/'
-
-    const fetchArticles = async () => {
-      const {
-        data: { stories }
-      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.blok.path}`, version: version.value })
-
-      featuredAricles.value = stories
-        .filter((x: any) => !x.is_startpage)
-        .slice(0, props.blok.quantity || 3)
-        .reduce((acc: any, story: any, i: number) => {
-          acc[i] = {
-            ...story,
-            content: {
-              ...story.content,
-              link: getTranslatedSlug(story, props.blok.path.replace(/\/$/, ''))
-            }
-          }
-
-          return acc
-        }, [])
-    }
-
-    onMounted(async () => await fetchArticles())
-
-    return { featuredAricles }
+    const sanitizedPath: ComputedRef<string> = computed(() => props.blok.path.replace(/\/$/, ''))
+    return { sanitizedPath }
   }
 })
 </script>
 
 <style lang="stylus" scoped>
-li
-  max-width 700px
-hr
-  border none
-  border-bottom 1px solid #e1e1e1
-  padding-bottom 30px
-  margin-bottom 60px
+.featured-articles
+  @apply flex flex-col items-center justify-center
+
+  &__paragraph
+    text-align center
+    font-size 15px
+    max-width 810px
+    line-height 1.9em
+  &__btn
+    color $white
+    font-size 14px
+    font-weight 600
+    line-height 1.9em
+    border-radius 50px
+    background $orange
+    text-decoration none
+    letter-spacing 0.15em
+    padding 18px 40px 12px
+    text-transform uppercase
+    font-family Gayathri, sans-serif
 </style>

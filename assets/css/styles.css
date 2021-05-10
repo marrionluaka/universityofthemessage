@@ -9,6 +9,12 @@
 .smoke {
   background-color: #f3f3f3;
 }
+.break {
+  width: 35px;
+  height: 2px;
+  margin-bottom: 20px;
+  background-color: #f3a94b;
+}
 body {
   font-family: Barlow, sans-serif;
   color: #5d5c70;

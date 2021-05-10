@@ -29,7 +29,7 @@ export default defineComponent({
     excerpt: {
       type: String,
       required: true
-    },
+    }
   }
 })
 </script>
