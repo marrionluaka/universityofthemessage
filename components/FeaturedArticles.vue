@@ -1,10 +1,11 @@
 <template lang="pug">
-.featured-articles(v-editable='blok')
-  h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
-  .break
-  p.featured-articles__paragraph.text-base.text-center {{ blok.subtitle }}
+.flex.flex-col(v-editable='blok')
+  .self-center.text-center
+    h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
+    .break.mx-auto
+    p.paragraph.text-base.text-center(v-if="blok.subtitle") {{ blok.subtitle }}
   ArticleList(:path="blok.path" :quantity="blok.quantity")
-  nuxt-link.btn(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
+  nuxt-link.btn.self-center(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
 </template>
 
 <script lang="ts">
@@ -25,9 +26,6 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.featured-articles
-  @apply flex flex-col items-center justify-center
-
-  &__paragraph
-    max-width 810px
+.paragraph
+  max-width 810px
 </style>

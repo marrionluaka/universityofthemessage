@@ -1,5 +1,12 @@
 <template lang="pug">
-div(class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
+div(v-if="article.quantity && article.quantity < 3" class="my-1 px-3 py-3 md:py-0 w-full sm:w-1/2")
+  FeaturedCard(
+    :link="article.link"
+    :title="article.title"
+    :excerpt="article.excerpt"
+    :src="article.featured_image.filename"
+  )
+div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
   FeaturedCard(
     :link="article.link"
     :title="article.title"

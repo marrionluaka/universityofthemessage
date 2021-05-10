@@ -44,6 +44,7 @@ export default defineComponent({
             ...story,
             content: {
               ...story.content,
+              quantity: Number(props.quantity || undefined),
               link: getTranslatedSlug(story, props.path.replace(/\/$/, ''))
             }
           }
