@@ -1,23 +1,25 @@
 <template lang="pug">
 .flex.flex-wrap.justify-between.py-8.mb-6(v-editable="blok")
-  .my-1.px-4(class="w-full md:w-1/2")
-    .map The Map
-  .my-1.px-4(class="w-full md:w-1/2")
-    h2.section-title.left Plan a visit
+  .my-1(class="px-2 md:px-6 w-full md:w-1/2")
+    .map(v-html="blok.address")
+  .my-1(class="px-2 md:px-6 w-full md:w-1/2")
+    h2(class="capitalize text-2xl sm:text-3xl lg:text-4xl") {{ $t('planifier-une-visite') }}
     .break
     p
       | Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
       | In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis.
 
-    .flex.flex-col(class="md:flex-row")
+    .flex.flex-col.mb-6(class="md:flex-row")
       .pr-8
         .flex.items-center
           img.mr-2.mb-2(src='~/assets/images/clock.svg' width='20' alt='')
-          h6 Meeting Times
+          h6.capitalize {{ $t('heures-de-reunion') }}
         p
-          | Sunday 10 am &middot; 11 am &middot; 6 pm
+          span.capitalize {{ $t('dimanche') }} 
+          | 10 am &middot; 11 am &middot; 6 pm
           br
-          | Wednesday 7:30 pm
+          span.capitalize {{ $t('mercredi') }} 
+          | 7:30 pm
       .col-location.pt-4(class="md:pt-0 md:pl-8")
         .flex
           img.mr-2.mb-2(src='~/assets/images/marker.svg' width='16' alt='')
@@ -26,7 +28,8 @@
           | 5678 &nbsp;Seltice Way
           br
           | Coeur D Alene, ID 12345
-    nuxt-link.button-orange.w-button(to='/contact') CONTACT US
+
+    nuxt-link.btn(:to="localePath('contact')") {{ $t('contactez-nous') }}
 
     //- .flex.map__info
     //-   p {{ blok.schedule }}
@@ -42,11 +45,17 @@ export default defineComponent({
       type: Object,
       required: true
     }
+  },
+  setup(props) {
+    console.log('maps', props.blok)
   }
 })
 </script>
 
 <style lang="stylus" scoped>
+>>> iframe
+  @apply w-full rounded-lg
+
 .col-location
   border-style none
   border-top-style solid

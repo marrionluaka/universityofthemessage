@@ -4,7 +4,7 @@
   .break
   p.featured-articles__paragraph {{ blok.subtitle }}
   ArticleList(:path="blok.path" :quantity="blok.quantity")
-  nuxt-link.featured-articles__btn(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
+  nuxt-link.btn(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
 </template>
 
 <script lang="ts">
@@ -33,16 +33,4 @@ export default defineComponent({
     font-size 15px
     max-width 810px
     line-height 1.9em
-  &__btn
-    color $white
-    font-size 14px
-    font-weight 600
-    line-height 1.9em
-    border-radius 50px
-    background $orange
-    text-decoration none
-    letter-spacing 0.15em
-    padding 18px 40px 12px
-    text-transform uppercase
-    font-family Gayathri, sans-serif
 </style>

@@ -15,6 +15,19 @@
   margin-bottom: 20px;
   background-color: #f3a94b;
 }
+.btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.9em;
+  border-radius: 50px;
+  background: #f3a94b;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  padding: 18px 40px 12px;
+  text-transform: uppercase;
+  font-family: Gayathri, sans-serif;
+}
 body {
   font-family: Barlow, sans-serif;
   color: #5d5c70;
