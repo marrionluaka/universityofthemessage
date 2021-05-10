@@ -2,7 +2,7 @@
 .featured-articles(v-editable='blok')
   h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
   .break
-  p.featured-articles__paragraph {{ blok.subtitle }}
+  p.featured-articles__paragraph.text-base.text-center {{ blok.subtitle }}
   ArticleList(:path="blok.path" :quantity="blok.quantity")
   nuxt-link.btn(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
 </template>
@@ -29,8 +29,5 @@ export default defineComponent({
   @apply flex flex-col items-center justify-center
 
   &__paragraph
-    text-align center
-    font-size 15px
     max-width 810px
-    line-height 1.9em
 </style>

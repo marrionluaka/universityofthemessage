@@ -5,9 +5,7 @@
   .my-1(class="px-2 md:px-6 w-full md:w-1/2")
     h2(class="capitalize text-2xl sm:text-3xl lg:text-4xl") {{ $t('planifier-une-visite') }}
     .break
-    p
-      | Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-      | In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis.
+    p.text-base {{ blok.text }}
 
     .flex.flex-col.mb-6(class="md:flex-row")
       .pr-8
