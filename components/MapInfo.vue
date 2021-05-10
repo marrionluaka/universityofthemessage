@@ -30,10 +30,6 @@
           | Coeur D Alene, ID 12345
 
     nuxt-link.btn(:to="localePath('contact')") {{ $t('contactez-nous') }}
-
-    //- .flex.map__info
-    //-   p {{ blok.schedule }}
-    //-   p {{ blok.location }}
 </template>
 
 <script lang="ts">
@@ -45,9 +41,6 @@ export default defineComponent({
       type: Object,
       required: true
     }
-  },
-  setup(props) {
-    console.log('maps', props.blok)
   }
 })
 </script>
@@ -64,5 +57,4 @@ export default defineComponent({
   +breakpoint(mobile-landscape)
     border-top-style none
     border-left-style solid
-    
 </style>
