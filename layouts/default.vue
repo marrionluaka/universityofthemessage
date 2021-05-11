@@ -16,8 +16,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus">
-body
-  background-color $bg-gray
-</style>
