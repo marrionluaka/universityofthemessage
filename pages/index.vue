@@ -68,6 +68,6 @@ export default defineComponent({
       line-height 1.2
   >>> &__bg-image
     opacity .44
-.section-4
+.section-4, .section-2
   background-color: $smoke
 </style>
