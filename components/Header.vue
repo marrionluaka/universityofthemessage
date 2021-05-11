@@ -1,6 +1,6 @@
 <template lang="pug">
 header.site-header
-  .container.mx-auto(class="md:flex md:items-center md:justify-between")
+  .container.mx-auto(class="flex justify-between md:items-center")
     h1.w-56.z-20.relative.m-0.text-2xl.font-thin
       nuxt-link.text-white.no-underline(:to="localePath('/')")
         strong.font-normal Branham
@@ -99,7 +99,7 @@ export default defineComponent({
   &__menu-trigger
     top 5px
     z-index 10
-    right 46px
+    right 16px
     color #FFF
     cursor pointer
     font-size 1.4rem

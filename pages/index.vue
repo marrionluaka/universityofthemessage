@@ -1,14 +1,9 @@
 <template lang="pug">
 main
   template(v-if="story")
-    PageBanner(className="text-center text-white")
-      h1.headline.headline--large L'Evangile du troisième exode
-      h2.headline.headline--medium Réveille tous les demons de leur draps
-      h3.headline.headline--small
-        | Mais vous
-        strong conscientise
-        |
-        | d'un changement réel et radical dans le domaine de la religion.
+    PageBanner.page-banner--hero(imgSrc="branham-dieu.jpeg" className="text-center text-white")
+      h1.tracking-wider.uppercase.text-3xl.text-center.text-white.max-w-4xl.mx-auto(class="sm:text-4xl md:text-5xl")
+        | {{ $t('dieu-le-pere') }}
 
     //- section.sermons
     //-   .container.container--narrow.mx-auto.px-6.mt-12
@@ -73,3 +68,11 @@ export default defineComponent({
 })
 </script>
 
+<style lang="stylus" scoped>
+.page-banner
+  &--hero
+    >>> h1
+      line-height 1.2
+  >>> &__bg-image
+    opacity .44
+</style>

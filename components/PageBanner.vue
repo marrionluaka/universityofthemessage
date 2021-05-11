@@ -36,7 +36,7 @@ export default defineComponent({
   padding 80px 0 40px 0
   position relative
   +breakpoint(mobile)
-    padding 130px 0 60px 0
+    padding 130px 0 60px
 
   &__bg-image
     opacity .33
@@ -50,4 +50,12 @@ export default defineComponent({
   &__content
     position relative
     z-index 2
+
+.page-banner--hero
+  @apply flex flex-col items-center justify-center
+  padding 8rem 0 6rem
+  +breakpoint(mobile)
+    padding 12rem 0 8rem
+  +breakpoint(mobile-landscape)
+    padding 18rem 0 16rem
 </style>
