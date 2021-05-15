@@ -12,6 +12,7 @@ describe('useTranslatedSlugs specs', () => {
 
   let story: any
   let wrapper: any
+  let getTranslatedPath: any
   let getTranslatedSlug: any
   let setTranslatedSlugs: any
 
@@ -29,7 +30,7 @@ describe('useTranslatedSlugs specs', () => {
       {
         template: `<div></div>`,
         setup() {
-          ;({ getTranslatedSlug, setTranslatedSlugs } = useTranslatedSlugs())
+          ;({ getTranslatedPath, getTranslatedSlug, setTranslatedSlugs } = useTranslatedSlugs())
         }
       },
       { localVue }
@@ -41,7 +42,7 @@ describe('useTranslatedSlugs specs', () => {
   })
 
   it('does not translate the slug of a given story.', () => {
-    useContextData.context.i18n.locale = 'fr'
+    useContextData.i18n.locale = 'fr'
 
     const actual = getTranslatedSlug(story, 'a-propos')
 
@@ -49,11 +50,19 @@ describe('useTranslatedSlugs specs', () => {
   })
 
   it('translates the slug of a given story.', () => {
-    useContextData.context.i18n.locale = 'en'
+    useContextData.i18n.locale = 'en'
 
     const actual = getTranslatedSlug(story, 'a-propos')
 
     expect(actual).toBe('en/about/our-doctrine')
+  })
+
+  it('translates a given path.', () => {
+    useContextData.i18n.locale = 'en'
+
+    const actual = getTranslatedPath('a-propos')
+
+    expect(actual).toBe('en/about')
   })
 
   it('dispatches setRouteParams with translated slugs.', () => {

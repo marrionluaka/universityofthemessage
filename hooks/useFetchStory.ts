@@ -4,11 +4,11 @@ import { useContext } from '~/hooks/useContext'
 import useStoryBridge from '~/hooks/useStoryBridge'
 
 export const useFetchStory = () => {
-  const { context, storyApi } = useContext()
+  const { context, storyApi, i18n } = useContext()
   const { setStoryBridgeListeners } = useStoryBridge()
 
   const story: Ref<any> = ref(null)
-  const locale = context.i18n.locale === 'fr' ? '' : 'en/'
+  const locale = i18n.locale === 'fr' ? '' : 'en/'
   const version = context.query._storyblok || context.isDev ? 'draft' : 'published'
 
   const fetchStory = async (page: string) => {

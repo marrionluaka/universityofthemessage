@@ -15,15 +15,16 @@ interface ITranslatedSlug {
 }
 
 export default function useTranslatedSlugs() {
-  const { context } = useContext()
+  const { context, i18n } = useContext()
 
   const getTranslatedSlug = (story: IStory, path: string) => {
-    const { i18n } = context
-    const locale = i18n.locale
-    const localePath = locale === 'fr' ? '' : 'en/'
     const slugs = _getTranslatedSlugs(story)
+    return `${getTranslatedPath(path)}/${slugs[i18n.locale].slug}`
+  }
 
-    return `${localePath}${i18n.t(path)}/${slugs[locale].slug}`
+  const getTranslatedPath = (path: string): string => {
+    const localePath = i18n.locale === 'fr' ? '' : 'en/'
+    return `${localePath}${i18n.t(path)}`
   }
 
   const setTranslatedSlugs = async (story: IStory) =>
@@ -40,5 +41,5 @@ export default function useTranslatedSlugs() {
     return slugs
   }
 
-  return { getTranslatedSlug, setTranslatedSlugs }
+  return { getTranslatedSlug, setTranslatedSlugs, getTranslatedPath }
 }
