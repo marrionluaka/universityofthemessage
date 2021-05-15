@@ -23,7 +23,6 @@ export default defineComponent({
   setup() {
     const { story, fetchStory } = useFetchStory()
     onMounted(async () => await fetchStory('evenements'))
-    console.log('story', story)
 
     return { story }
   }
