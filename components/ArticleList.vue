@@ -8,7 +8,6 @@
 import { defineComponent, ref, Ref, onMounted } from '@vue/composition-api'
 
 import { useContext } from '~/hooks/useContext'
-import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
@@ -26,15 +25,14 @@ export default defineComponent({
   setup(props) {
     const featuredAricles: Ref<any> = ref([])
 
-    const { version } = useFetchStory()
-    const { context, storyApi } = useContext()
+    const { context, storyApi, version } = useContext()
     const { getTranslatedSlug } = useTranslatedSlugs()
     const locale = context.i18n.locale === 'fr' ? '' : 'en/'
 
     const fetchArticles = async () => {
       const {
         data: { stories }
-      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.path}`, version: version.value })
+      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.path}`, version })
 
       featuredAricles.value = stories
         .filter((x: any) => !x.is_startpage)

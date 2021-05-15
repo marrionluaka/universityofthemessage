@@ -6,9 +6,10 @@ section.page
       .page__intro
         p {{ bannerData.subtitle }}
 
-    .container.container--narrow.mx-auto.px-6
+    .container.container--narrow.mx-auto.px-6.py-12
       slot
         div(v-for="blok in story.body" :key='blok._uid')
+          p {{ blok.component }}
           component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
@@ -32,7 +33,7 @@ export default defineComponent({
   },
 
   setup({ story }) {
-    const isPageBanner = (x: any) => x.component === 'page-banner'
+    const isPageBanner = (x: any) => x.component === 'PageBanner'
     const bannerData: Ref<IBanner | null> = ref(null)
 
     onMounted(() => {
