@@ -12,17 +12,13 @@ import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
   props: {
-    path: {
-      type: String,
+    blok: {
+      type: Object,
       required: true
-    },
-    quantity: {
-      type: String,
-      required: false
     }
   },
 
-  setup(props) {
+  setup({ blok }) {
     const featuredAricles: Ref<any> = ref([])
 
     const { context, storyApi, version } = useContext()
@@ -32,18 +28,18 @@ export default defineComponent({
     const fetchArticles = async () => {
       const {
         data: { stories }
-      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${props.path}`, version })
+      } = await storyApi.get('cdn/stories/', { starts_with: `${locale}${blok.path}`, version })
 
       featuredAricles.value = stories
         .filter((x: any) => !x.is_startpage)
-        .slice(0, Number(props.quantity) || undefined)
+        .slice(0, Number(blok.quantity) || undefined)
         .reduce((acc: any, story: any, i: number) => {
           acc[i] = {
             ...story,
             content: {
               ...story.content,
-              quantity: Number(props.quantity || undefined),
-              link: getTranslatedSlug(story, props.path.replace(/\/$/, ''))
+              quantity: Number(blok.quantity || undefined),
+              link: getTranslatedSlug(story, blok.path.replace(/\/$/, ''))
             }
           }
 

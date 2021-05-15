@@ -28,15 +28,13 @@ import MapInfo from '~/components/MapInfo.vue'
 import PageBanner from '~/components/PageBanner.vue'
 import YouTubeCard from '~/components/YouTubeCard.vue'
 import YouTubePlayList from '~/components/YouTubePlayList.vue'
-import FeaturedArticles from '~/components/FeaturedArticles.vue'
 
 export default defineComponent({
   components: {
     MapInfo,
     PageBanner,
     YouTubeCard,
-    YouTubePlayList,
-    FeaturedArticles
+    YouTubePlayList
   },
 
   setup() {

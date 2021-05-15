@@ -4,7 +4,8 @@
     h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
     .break.mx-auto
     p.paragraph.text-base.text-center(v-if="blok.subtitle") {{ blok.subtitle }}
-  ArticleList(:path="blok.path" :quantity="blok.quantity")
+  div(v-for="blok in blok.articleList" :key='blok._uid')
+    component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
   nuxt-link.btn.self-center(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
 </template>
 
@@ -18,8 +19,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
-    const sanitizedPath: ComputedRef<string> = computed(() => props.blok.path.replace(/\/$/, ''))
+  setup({ blok }) {
+    const sanitizedPath: ComputedRef<string> = computed(() => blok.path.replace(/\/$/, ''))
     return { sanitizedPath }
   }
 })

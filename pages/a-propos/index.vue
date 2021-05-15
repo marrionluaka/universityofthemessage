@@ -9,11 +9,11 @@ section
 <script lang="ts">
 import { defineComponent, onMounted } from '@vue/composition-api'
 
-import { useFetchStory } from '~/hooks/useFetchStory'
-
 import Page from '~/components/Page.vue'
 import PageLinks from '~/components/PageLinks.vue'
 import PageContent from '~/components/PageContent.vue'
+
+import { useFetchStory } from '~/hooks/useFetchStory'
 import { useFetchArticles } from '~/hooks/useFetchArticles'
 
 export default defineComponent({

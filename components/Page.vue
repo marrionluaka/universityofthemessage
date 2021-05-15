@@ -6,10 +6,9 @@ section.page
       .page__intro
         p {{ bannerData.subtitle }}
 
-    .container.container--narrow.mx-auto.px-6.py-12
+    .container.mx-auto.px-6.py-12
       slot
         div(v-for="blok in story.body" :key='blok._uid')
-          p {{ blok.component }}
           component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 

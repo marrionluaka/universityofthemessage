@@ -1,5 +1,5 @@
 <template lang="pug">
-  section
+  section.smoke
     Page(v-if="story" :story="story.content")
 </template>
 
@@ -23,6 +23,7 @@ export default defineComponent({
   setup() {
     const { story, fetchStory } = useFetchStory()
     onMounted(async () => await fetchStory('evenements'))
+    console.log('story', story)
 
     return { story }
   }
