@@ -1,17 +1,17 @@
 <template lang="pug">
 li.yt-card.my-1.px-2.pb-4(
   v-yt-hover
-  :class="[isPlaying ? 'playing' : '', 'w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0 lg:w-1/4']"
+  :class="[isPlaying ? 'playing' : '', 'w-full sm:pb-2 sm:w-1/2 md:w-1/3 lg:pb-0']"
 )
   button.w-full.appearance-none(@click="$emit('click', video.snippet.resourceId.videoId)")
-    .rounded-md.yt-img(
+    .yt-img(
       :title="video.snippet.title"
       :style="{ 'background-image': `url(${video.snippet.thumbnails.medium.url})`}"
     )
       div.yt-play.flex.justify-center.items-center
         img(alt='subscribe' src='~/assets/images/play-hover.png')
 
-    h3.yt-title.p-2.text-xs.px-4 {{ video.snippet.title }}
+    p.yt-title.p-2.px-4.text-sm.font-black {{ video.snippet.title }}
 </template>
 
 <script lang="ts">

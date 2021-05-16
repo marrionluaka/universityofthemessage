@@ -18,7 +18,7 @@
       li.hidden(v-for='page in props.pages' :key='page' :class='props.pageClasses(props.page)')
         a(v-bind='props.aProps' :class='props.theme.link') {{ page }}
       
-      li {{ props.page }} {{ $t('sur') }} {{ props.pages.length }}
+      li.px-2 {{ props.page }} {{ $t('sur') }} {{ props.pages.length }}
 
       li.inline-block(:class='props.theme.next' @click='props.setNextPage')
         a.block(v-bind='{...props.aProps, ...props.nextProps}')

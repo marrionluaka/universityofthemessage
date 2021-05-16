@@ -1,9 +1,11 @@
 <template lang="pug">
 section
-  PageBanner(className='text-center text-white')
-    h1.headline.headline--large Sermons
+  PageBanner
+    h1.page__title.mb-0 Sermons
+    .page__intro
+      p.text-white.text-lg.font-light(class="md:text-3xl") Listen to sermons
 
-  .container.mx-auto.px-6
+  .container.mx-auto.px-6.mt-16
     section.flex.justify-center.items-center.py-4(v-if="currentVideoId")
       YouTubePlayer(:videoId="currentVideoId")
     
