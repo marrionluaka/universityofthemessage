@@ -13,7 +13,7 @@ export default defineComponent({
     imgSrc: {
       type: String,
       required: false,
-      default: 'default-page-banner.jpeg'
+      default: require('~/assets/images/default-page-banner.jpeg')
     },
 
     className: {
@@ -24,7 +24,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const getImgUrl = () => ({ 'background-image': `url(${require(`~/assets/images/${props.imgSrc}`)}` })
+    const getImgUrl = () => ({ 'background-image': `url(${props.imgSrc}` })
     return { getImgUrl }
   }
 })
@@ -33,7 +33,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .page-banner
   background-color #000
-  padding 80px 0 40px 0
+  padding 80px 0px 40px
   position relative
   +breakpoint(mobile)
     padding 130px 0 60px

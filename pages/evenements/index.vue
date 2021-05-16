@@ -1,6 +1,8 @@
 <template lang="pug">
-  section.smoke
-    Page(v-if="story" :story="story.content")
+Page(v-if="story" :story="story.content")
+  .container.mx-auto.px-6.py-12
+    div(v-for="blok in story.content.body" :key='blok._uid')
+      component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">

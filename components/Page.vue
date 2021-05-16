@@ -1,13 +1,13 @@
 <template lang="pug">
-section.page
-  template(v-if='story.component')
-    PageBanner(v-if="bannerData")
-      h1.page__title {{ bannerData.title }}
-      .page__intro
-        p {{ bannerData.subtitle }}
+section.page.smoke  
+  PageBanner(v-if="story.title" :imgSrc="story.featured_image.filename")
+    h1.page__title.mb-0 {{ story.title }}
+    .page__intro
+      p.text-white.text-lg.font-light(class="md:text-3xl") {{ story.subtitle }}
 
-    .container.mx-auto.px-6.py-12
-      slot
+  template(v-if='story.component')
+    slot
+      .container.container--narrow.mx-auto.px-6.py-12
         div(v-for="blok in story.body" :key='blok._uid')
           component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
@@ -50,18 +50,9 @@ export default defineComponent({
   &__title
     font-weight 300
     font-size 3.6rem
-    margin 0 0 1rem 0
     color #FFF
     +breakpoint(mobile)
       font-size 5rem
-
-  &__intro
-    font-weight 300
-    font-size 1.2rem
-    line-height 1.3
-    color #EDEDED
-    +breakpoint(mobile)
-      font-size 1.65rem
 
   &__intro p
     margin 0

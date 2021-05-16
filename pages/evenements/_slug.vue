@@ -1,6 +1,5 @@
 <template lang="pug">
-  section
-    Page(v-if="story" :story="story.content")
+Page(v-if="story" :story="story.content")
 </template>
 
 <script lang="ts">

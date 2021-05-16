@@ -1,25 +1,18 @@
 <template lang="pug">
-section
-  Page(v-if="story" :story="story.content")
-    template
-      div(v-for="blok in story.content.body" :key='blok._uid')
-        component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
+Page(v-if="story" :story="story.content")
 </template>
 
 <script lang="ts">
 import { pipe, split, last } from 'ramda'
 import { defineComponent, onMounted } from '@vue/composition-api'
 
+import Page from '~/components/Page.vue'
 import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
-
-import Page from '~/components/Page.vue'
-import PageLinks from '~/components/PageLinks.vue'
-import PageContent from '~/components/PageContent.vue'
 import { useFetchArticles } from '~/hooks/useFetchArticles'
 
 export default defineComponent({
-  components: { Page, PageLinks, PageContent },
+  components: { Page },
 
   nuxtI18n: {
     paths: {

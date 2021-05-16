@@ -21,9 +21,9 @@ export default defineComponent({
   setup({ blok }) {
     const featuredAricles: Ref<any> = ref([])
 
-    const { context, storyApi, version } = useContext()
+    const { storyApi, version, i18n } = useContext()
     const { getTranslatedSlug } = useTranslatedSlugs()
-    const locale = context.i18n.locale === 'fr' ? '' : 'en/'
+    const locale = i18n.locale === 'fr' ? '' : 'en/'
 
     const fetchArticles = async () => {
       const {
@@ -39,7 +39,7 @@ export default defineComponent({
             content: {
               ...story.content,
               quantity: Number(blok.quantity || undefined),
-              link: getTranslatedSlug(story, blok.path.replace(/\/$/, ''))
+              link: '/' + getTranslatedSlug(story, blok.path.replace(/\/$/, ''))
             }
           }
 

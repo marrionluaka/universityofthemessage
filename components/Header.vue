@@ -1,6 +1,6 @@
 <template lang="pug">
 header.site-header
-  .container.mx-auto(class="flex justify-between md:items-center")
+  .container.mx-auto.px-2(class="flex justify-between md:items-center")
     h1.w-56.z-20.relative.m-0.text-2xl.font-thin
       nuxt-link.text-white.no-underline(:to="localePath('/')")
         strong.font-normal Branham

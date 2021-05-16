@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   template(v-if="story")
-    PageBanner.page-banner--hero(imgSrc="branham-dieu.jpeg" className="text-center text-white")
+    PageBanner.page-banner--hero(:imgSrc="bannerImg" className="text-center text-white")
       h1.tracking-wider.uppercase.text-3xl.text-center.text-white.max-w-4xl.mx-auto(class="sm:text-4xl md:text-5xl")
         | {{ $t('dieu-le-pere') }}
 
@@ -19,7 +19,7 @@ main
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@vue/composition-api'
+import { computed, ComputedRef, defineComponent, onMounted } from '@vue/composition-api'
 
 import useStoryBridge from '~/hooks/useStoryBridge'
 import { useFetchStory } from '~/hooks/useFetchStory'
@@ -54,7 +54,9 @@ export default defineComponent({
       setStoryBridgeListeners(story.value.content)
     })
 
-    return { story }
+    const bannerImg:ComputedRef<any> = computed(() => require('~/assets/images/branham-dieu.jpeg'))
+
+    return { story, bannerImg }
   }
 })
 </script>
