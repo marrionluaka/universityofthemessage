@@ -32,7 +32,6 @@ export default defineComponent({
   },
 
   setup({ story }) {
-    console.log('yo', story)
     const isPageBanner = (x: any) => x.component === 'PageBanner'
     const bannerData: Ref<IBanner | null> = ref(null)
 

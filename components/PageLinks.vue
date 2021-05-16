@@ -13,9 +13,15 @@ transition(name="fade")
 import { pipe, split, last } from 'ramda'
 import { defineComponent, watch, ref, Ref } from '@vue/composition-api'
 
-import { ILink } from '~/hooks/usePageLinks'
 import { useFetchArticles } from '~/hooks/useFetchArticles'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
+
+interface ILink {
+  path: string
+  name: string
+  isActiveLink?: boolean
+  is_startpage?: boolean
+}
 
 export default defineComponent({
   props: {
@@ -43,7 +49,7 @@ export default defineComponent({
 
     const isActive = (path: string) => {
       const getCurrentPath = pipe<string, any, any>(split('/'), last)
-      return path.includes(getCurrentPath(location.pathname))
+      return parentLink.value.path !== location.pathname && path.includes(getCurrentPath(location.pathname))
     }
 
     const setParentLink = (parentStory: any) => {
