@@ -5,7 +5,7 @@ nuxt-link.card(:to="link")
 
   slot
     .card__block(class="pt-4 px-8 pb-8 md:pt-8 md:px-16 md:pt-16")
-      h3.card__title(class="mt-5 text-2xl sm:text-3xl lg:text-4xl") {{ title }}
+      h4.card__title(class="mt-5 text-2xl sm:text-3xl lg:text-4xl") {{ title }}
       p.card__paragraph(class="text-sm lg:text-base") {{ excerpt }}
 </template>
 
@@ -36,7 +36,10 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .card
+  @apply rounded-bl-md rounded-br-md
   display block
+  height 100%
+  overflow hidden
   transition transform 300ms ease, box-shadow 300ms ease
   transition box-shadow 300ms ease, -webkit-transform 300ms ease
   -webkit-transition box-shadow 300ms ease, -webkit-transform 300ms ease
@@ -55,4 +58,7 @@ export default defineComponent({
 
   &__block
     @apply h-full bg-white rounded-bl-md rounded-br-md
+    
+  &__title
+    text-transform capitalize
 </style>

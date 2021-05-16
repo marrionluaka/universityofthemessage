@@ -32,7 +32,10 @@ export default defineComponent({
     border-left-style solid
     border-left-color $font-gray
   ol
-    @apply list-decimal pl-8
+    @apply list-decimal pl-8 py-4
   li
     @apply pl-2
+    font-weight 700
+    p
+      font-weight 700
 </style>

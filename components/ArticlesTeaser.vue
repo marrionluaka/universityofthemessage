@@ -1,5 +1,5 @@
 <template lang="pug">
-div(v-if="article.quantity && article.quantity < 3" class="my-1 px-3 py-3 md:py-0 w-full sm:w-1/2")
+div(v-if="article.columns && article.columns < 3" class="my-4 px-4 py-3 md:py-0 w-full sm:w-1/2")
   FeaturedCard(
     :link="article.link"
     :title="article.title"

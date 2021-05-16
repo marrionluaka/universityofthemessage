@@ -79,7 +79,6 @@ export default defineComponent({
 
   +breakpoint(tablet-landscape-up)
     margin: 0 0 40px 20px
-    margin-top 2rem
     width: 300px
     float: right
 

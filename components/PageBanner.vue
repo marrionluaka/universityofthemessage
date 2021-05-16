@@ -1,12 +1,12 @@
 <template lang="pug">
 .page-banner
-  .page-banner__bg-image(:style="getImgUrl()")
+  .page-banner__bg-image(:style="getImgUrl")
   .page-banner__content.container.mx-auto(:class="className")
     slot
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, computed, ComputedRef } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
@@ -24,7 +24,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const getImgUrl = () => ({ 'background-image': `url(${props.imgSrc}` })
+    const getImgUrl:ComputedRef<any> = computed(() => ({ 'background-image': `url(${props.imgSrc}` }))
     return { getImgUrl }
   }
 })

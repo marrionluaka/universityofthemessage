@@ -32,13 +32,13 @@ export default defineComponent({
 
       featuredAricles.value = stories
         .filter((x: any) => !x.is_startpage)
-        .slice(0, Number(blok.quantity) || undefined)
+        .slice(0, blok.quantity || undefined)
         .reduce((acc: any, story: any, i: number) => {
           acc[i] = {
             ...story,
             content: {
               ...story.content,
-              quantity: Number(blok.quantity || undefined),
+              columns: blok.columns || undefined,
               link: '/' + getTranslatedSlug(story, blok.path.replace(/\/$/, ''))
             }
           }

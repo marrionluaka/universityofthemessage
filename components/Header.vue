@@ -25,9 +25,9 @@ header.site-header
           li
             nuxt-link.text-white.block.no-underline(:to="localePath('evenements')") {{ $t('evenements-nav') }}
           li
+            nuxt-link.text-white.block.no-underline(:to="localePath('blog')") Blog
+          li
             nuxt-link.text-white.block.no-underline(to='#') Contact
-          //- li
-          //-   nuxt-link.text-white.block.no-underline(to='/news') Blog
 </template>
 
 <script lang="ts">
