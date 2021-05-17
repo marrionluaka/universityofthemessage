@@ -1,6 +1,7 @@
 <template lang="pug">
-BlogCard.my-4.px-4.py-3(:article="article" v-if="article.columns && article.columns < 3" class="md:py-0 w-full sm:w-1/2")
-div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
+BlogCard(:article="article" v-if="article.columns && article.columns == 2")
+StaffCard(:article="article" v-else-if="article.columns && article.columns == 4")
+.my-1.px-3.py-3.w-full(v-else class="sm:w-1/2 lg:py-0 lg:w-1/3")
   FeaturedCard(
     :link="article.link"
     :title="article.title"
@@ -9,6 +10,7 @@ div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
   )
     template(#featured-image)
       FeaturedImage(:src="article.featured_image.filename")
+
     template(#default)
       .h-full.rounded-bl-md.rounded-br-md.p-4.bg-white.text-center(class="px-8 md:px-16")
         h3(class="text-2xl") {{ article.title }}
@@ -17,23 +19,17 @@ div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+
 import BlogCard from '~/components/BlogCard.vue'
+import StaffCard from '~/components/StaffCard.vue'
 
 export default defineComponent({
-  components: { BlogCard },
+  components: { BlogCard, StaffCard },
 
   props: {
     article: {
       type: Object,
       required: true
-    }
-  },
-
-  filters: {
-    formatDate: function (value: string): string | undefined {
-      if (value) {
-        return new Date(value).toLocaleDateString('en-US', { day: 'numeric', year: 'numeric', month: 'long' })
-      }
     }
   }
 })

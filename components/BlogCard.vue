@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col.my-4.px-4.py-3(class="md:py-0 w-full sm:w-1/2")
   FeaturedCard(
     :link="article.link"
     :title="article.title"

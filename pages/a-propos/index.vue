@@ -1,5 +1,8 @@
 <template lang="pug">
 Page(v-if="story" :story="story.content")
+  //- :class="{ container: blok.component  }"
+  div(v-for="blok in story.content.body" :key='blok._uid')
+    component.mx-auto.px-6.py-12(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
 <script lang="ts">
@@ -34,3 +37,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="stylus" scoped>
+.page-content
+  background: $white
+</style>

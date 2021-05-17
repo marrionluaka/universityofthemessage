@@ -19,7 +19,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .page-content
   p
-    @apply text-lg mb-4
+    @apply text-base mb-4
   h2, h3, h4, h5, h6
     @apply mt-8 text-2xl
     +breakpoint(mobile-landscape)
