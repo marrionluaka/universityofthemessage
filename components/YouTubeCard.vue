@@ -11,7 +11,7 @@ li.yt-card.my-1.px-2.pb-4(
       div.yt-play.flex.justify-center.items-center
         img(alt='subscribe' src='~/assets/images/play-hover.png')
 
-    p.yt-title.p-2.px-4.text-sm.font-black {{ video.snippet.title }}
+    p.yt-title.excerpt {{ video.snippet.title }}
 </template>
 
 <script lang="ts">
@@ -80,8 +80,5 @@ export default defineComponent({
     background-position center
 
   &-title
-    +breakpoint(mobile-landscape)
-      overflow hidden
-      white-space nowrap
-      text-overflow ellipsis
+    @apply p-2 px-4 text-sm font-black
 </style>
