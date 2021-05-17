@@ -1,5 +1,5 @@
 <template lang="pug">
-nuxt-link.card(:to="link")
+nuxt-link.card(:to="link" :title="title")
   slot(name="featured-image")
     FeaturedImage.card__img(:src="src")
 
@@ -36,9 +36,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .card
-  @apply rounded-bl-md rounded-br-md
-  display block
-  height 100%
+  @apply rounded-bl-md rounded-br-md flex flex-col flex-grow
   overflow hidden
   transition transform 300ms ease, box-shadow 300ms ease
   transition box-shadow 300ms ease, -webkit-transform 300ms ease

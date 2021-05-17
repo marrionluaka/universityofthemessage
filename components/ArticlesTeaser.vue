@@ -1,11 +1,5 @@
 <template lang="pug">
-div(v-if="article.columns && article.columns < 3" class="my-4 px-4 py-3 md:py-0 w-full sm:w-1/2")
-  FeaturedCard(
-    :link="article.link"
-    :title="article.title"
-    :excerpt="article.excerpt"
-    :src="article.featured_image.filename"
-  )
+BlogCard.my-4.px-4.py-3(:article="article" v-if="article.columns && article.columns < 3" class="md:py-0 w-full sm:w-1/2")
 div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
   FeaturedCard(
     :link="article.link"
@@ -23,8 +17,11 @@ div(v-else class="my-1 px-3 py-3 w-full sm:w-1/2 lg:py-0 lg:w-1/3")
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import BlogCard from '~/components/BlogCard.vue'
 
 export default defineComponent({
+  components: { BlogCard },
+
   props: {
     article: {
       type: Object,

@@ -13,6 +13,13 @@ body
 .smoke
   background-color: $smoke
 
+.excerpt
+  +breakpoint(mobile-landscape)
+    max-width 100%
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
+
 .break
   width 35px
   height 2px

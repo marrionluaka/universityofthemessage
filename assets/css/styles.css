@@ -13,6 +13,14 @@ body {
 .smoke {
   background-color: #f3f3f3;
 }
+@media (min-width: 768px) {
+  .excerpt {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
 .break {
   width: 35px;
   height: 2px;
