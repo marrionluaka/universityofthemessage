@@ -30,7 +30,9 @@ export default defineComponent({
     margin-bottom 1rem
     border-left-width 3px
     border-left-style solid
-    border-left-color $font-gray
+    border-left-color $orange
+  hr
+    @apply my-6
   ol
     @apply list-decimal pl-8 py-4
   li
@@ -38,4 +40,5 @@ export default defineComponent({
     font-weight 700
     p
       font-weight 700
+      @apply text-base
 </style>
