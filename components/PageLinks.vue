@@ -1,6 +1,6 @@
 <template lang="pug">
 transition(name="fade")
-  .page-links(v-editable="blok" v-show="links.length")
+  .page-links(v-editable="body" v-show="links.length")
     h2.page-links__title.text-2xl.py-3
       nuxt-link.capitalize(:to="parentLink.path") {{ parentLink.name }}
 
@@ -25,7 +25,7 @@ interface ILink {
 
 export default defineComponent({
   props: {
-    blok: {
+    body: {
       type: Object,
       required: true
     }
@@ -61,7 +61,7 @@ export default defineComponent({
 
     const setLinks = (parentSlug: string) => {
       links.value = articles.value
-        .filter((article: any) => props.blok.links.includes(article.uuid))
+        .filter((article: any) => props.body.links.includes(article.uuid))
         .map((story: any) => ({ name: story.content.title, path: '/' + getTranslatedSlug(story, parentSlug) }))
     }
 

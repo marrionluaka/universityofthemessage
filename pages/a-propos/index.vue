@@ -1,7 +1,6 @@
 <template lang="pug">
 Page(v-if="story" :story="story.content")
-  //- :class="{ container: blok.component  }"
-  div(v-for="blok in story.content.body" :key='blok._uid')
+  section.py-10(v-for="(blok, i) in story.content.body" :key='blok._uid' :class="`section-${i}`" class="md:py-20")
     component.mx-auto.px-6.py-12(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
@@ -9,7 +8,6 @@ Page(v-if="story" :story="story.content")
 import { defineComponent, onMounted } from '@vue/composition-api'
 
 import Page from '~/components/Page.vue'
-
 import { useFetchStory } from '~/hooks/useFetchStory'
 import { useFetchArticles } from '~/hooks/useFetchArticles'
 
@@ -39,6 +37,13 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.page-content
+.section-0
   background: $white
+  .page-content
+    max-width 960px
+
+.section-1
+  background $smoke
+  & > div
+    max-width 1170px
 </style>
