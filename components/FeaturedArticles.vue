@@ -6,7 +6,7 @@
     p.paragraph.text-base.text-center(v-if="blok.subtitle") {{ blok.subtitle }}
   div(v-for="blok in blok.articleList" :key='blok._uid')
     component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
-  nuxt-link.btn.self-center(:to="localePath(sanitizedPath)") {{ $t('plus-d-evenements') }}
+  nuxt-link.btn.self-center(:to="localePath(sanitizedPath)") {{ blok.button }}
 </template>
 
 <script lang="ts">
