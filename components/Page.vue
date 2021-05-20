@@ -1,9 +1,10 @@
 <template lang="pug">
-section.page.smoke  
-  PageBanner(v-if="story.title" :imgSrc="story.featured_image.filename")
-    h1.page__title.mb-0 {{ story.title }}
-    .page__intro
-      p.text-white.text-lg.font-light(class="md:text-3xl") {{ story.subtitle }}
+section.page.smoke
+  slot(name="banner")
+    PageBanner(v-if="story.title" :imgSrc="story.featured_image.filename")
+      h1.page__title.mb-0 {{ story.title }}
+      .page__intro
+        p.text-white.text-lg.font-light(class="md:text-3xl") {{ story.subtitle }}
 
   template(v-if='story.component')
     slot

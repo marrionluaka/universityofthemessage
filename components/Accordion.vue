@@ -63,7 +63,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 p
-  @apply text-base
+  font-size 15px
 
 @keyframes accordion-is-inactive
   0%

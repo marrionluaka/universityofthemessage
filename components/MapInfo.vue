@@ -10,7 +10,7 @@
     .flex.flex-col.mb-6(class="md:flex-row")
       .pr-8
         .flex.items-center
-          img.mr-2.mb-2(src='~/assets/images/clock.svg' width='20' alt='')
+          //- img.mr-2.mb-2(src='~/assets/images/clock.svg' width='20' alt='')
           h6.capitalize {{ $t('heures-de-reunion') }}
         p
           span.capitalize {{ $t('dimanche') }} 
@@ -20,7 +20,7 @@
           | 7:30 pm
       .col-location.pt-4(class="md:pt-0 md:pl-8")
         .flex
-          img.mr-2.mb-2(src='~/assets/images/marker.svg' width='16' alt='')
+          //- img.mr-2.mb-2(src='~/assets/images/marker.svg' width='16' alt='')
           h6.capitalize {{ $t('emplacement') }}
         p
           | 5678 &nbsp;Seltice Way

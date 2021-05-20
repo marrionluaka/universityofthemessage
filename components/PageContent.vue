@@ -19,9 +19,10 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .page-content
   p
-    @apply text-base mb-4
+    @apply mb-4
+    font-size 15px
   h2, h3, h4, h5, h6
-    @apply mt-8 text-2xl
+    @apply mt-6 text-2xl
     +breakpoint(mobile-landscape)
       @apply text-4xl
   blockquote
@@ -40,5 +41,5 @@ export default defineComponent({
     font-weight 700
     p
       font-weight 700
-      @apply text-base
+      font-size 15px
 </style>
