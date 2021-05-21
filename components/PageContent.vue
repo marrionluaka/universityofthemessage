@@ -18,13 +18,13 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .page-content
+  img
+    display inline-block
+    max-width 100%
+    border-radius 5px
   p
     @apply mb-4
     font-size 15px
-  h2, h3, h4, h5, h6
-    @apply mt-6 text-2xl
-    +breakpoint(mobile-landscape)
-      @apply text-4xl
   blockquote
     font-style italic
     padding 20px
