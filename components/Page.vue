@@ -14,7 +14,7 @@ section.page.smoke
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import PageBanner from './PageBanner.vue'
 
 interface IBanner {
@@ -30,18 +30,6 @@ export default defineComponent({
       type: Object,
       required: true
     }
-  },
-
-  setup({ story }) {
-    const isPageBanner = (x: any) => x.component === 'PageBanner'
-    const bannerData: Ref<IBanner | null> = ref(null)
-
-    onMounted(() => {
-      const defaultData = { title: "l'Université du message", subtitle: "La parole de Dieu faite chair" }
-      bannerData.value = story.body?.find(isPageBanner) || defaultData
-    })
-
-    return { bannerData }
   }
 })
 </script>

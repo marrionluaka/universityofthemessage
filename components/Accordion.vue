@@ -44,6 +44,7 @@ export default defineComponent({
     })    
 
     const togglePanel = (id: string) => {
+      // @ts-ignore
       const el = ctx.refs[id]?.[0]
       const idx = _findIdxById(id, panels.value)
       const isActive = !panels.value[idx].isActive

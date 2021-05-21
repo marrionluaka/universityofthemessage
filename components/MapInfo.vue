@@ -10,7 +10,7 @@
     .flex.flex-col.mb-6(class="md:flex-row")
       .pr-8
         .flex.items-center
-          //- img.mr-2.mb-2(src='~/assets/images/clock.svg' width='20' alt='')
+          TimeClock.mr-2.mb-3
           h6.capitalize {{ $t('heures-de-reunion') }}
         p
           span.capitalize {{ $t('dimanche') }} 
@@ -19,8 +19,8 @@
           span.capitalize {{ $t('mercredi') }} 
           | 7:30 pm
       .col-location.pt-4(class="md:pt-0 md:pl-8")
-        .flex
-          //- img.mr-2.mb-2(src='~/assets/images/marker.svg' width='16' alt='')
+        .flex.items-center
+          LocationMarker.mr-2.mb-3
           h6.capitalize {{ $t('emplacement') }}
         p
           | 5678 &nbsp;Seltice Way
@@ -32,6 +32,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { TimeClock, LocationMarker } from '~/components/icons/'
 
 export default defineComponent({
   props: {
