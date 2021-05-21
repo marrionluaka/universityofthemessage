@@ -8,16 +8,18 @@ Page(v-if="story" :story="story.content")
       template(#schedule)
         .schedule(class="md:px-0")
           .w-full.my-1(class="sm:w-1/2 sm:px-1 sm:pl-0")
-            EventInfo.schedule__time(title="Times")
-              template(#icon)
+            EventInfo.schedule__time
+              template(#title)
                 TimeClock.mr-2.-mb-1(fill="white")
+                h6.mb-0.text-base.text-white.capitalize  {{ $t('horaire') }}
               template(#content)
                 p.text-white {{ formateTime(eventData.start, eventData.end) }}; {{ formateDate(eventData.start) }}
 
           .w-full.my-1(class="sm:w-1/2 sm:px-1 sm:pr-0")
             EventInfo.schedule__location(title="Location")
-              template(#icon)
+              template(#title)
                 LocationMarker.mr-2.-mb-1.text-white(fill="white")
+                h6.mb-0.text-base.text-white.capitalize {{ $t('emplacement') }}
               template(#content)
                 p.text-white {{ eventData.location }}
 </template>

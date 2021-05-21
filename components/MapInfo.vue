@@ -21,7 +21,7 @@
       .col-location.pt-4(class="md:pt-0 md:pl-8")
         .flex.items-center
           LocationMarker.mr-2.mb-3
-          h6.capitalize {{ $t('emplacement') }}
+          h6.capitalize {{ $t('adresse') }}
         p
           | 5678 &nbsp;Seltice Way
           br
