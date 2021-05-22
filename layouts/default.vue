@@ -1,5 +1,5 @@
 <template lang="pug">
-  .wrapper.flex.flex-col.min-h-screen
+  .wrapper.flex.flex-col.min-h-screen#top
     Header
     Nuxt.flex-grow
     Footer
