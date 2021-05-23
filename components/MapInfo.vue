@@ -14,31 +14,56 @@
           h6.capitalize {{ $t('heures-de-reunion') }}
         p
           span.capitalize {{ $t('dimanche') }} 
-          | 10 am &middot; 11 am &middot; 6 pm
+          span(v-html="$t('dimanche-heures')")
           br
           span.capitalize {{ $t('mercredi') }} 
-          | 7:30 pm
+          | {{ $t('mercredi-heures') }}
       .col-location.pt-4(class="md:pt-0 md:pl-8")
         .flex.items-center
           LocationMarker.mr-2.mb-3
           h6.capitalize {{ $t('adresse') }}
         p
-          | 5678 &nbsp;Seltice Way
+          | 18 eme rue Q. industriel
           br
-          | Coeur D Alene, ID 12345
+          | Commune de Limete
 
-    nuxt-link.btn(:to="localePath('contact')") {{ $t('contactez-nous') }}
+    .flex
+      a.cursor-pointer.rounded-full.border-none.w-10.h-10.flex.justify-center.items-center.btn-fb(
+        href="https://www.facebook.com/branhameglise.delimete/"
+      )
+        font-awesome-icon.text-white.text-xl(:icon="faFacebookF")
+      a.cursor-pointer.rounded-full.mx-4.border-none.w-10.h-10.flex.justify-center.items-center.btn-wa(
+        href="https://wa.me/243818290184/"
+      )
+        font-awesome-icon.text-white.text-xl(:icon="faWhatsapp")
+      a.cursor-pointer.rounded-full.border-none.w-10.h-10.flex.justify-center.items-center.btn-en(
+        href="mailto:Missionevangeliquebranhameglis@gmail.com"
+      )
+        font-awesome-icon.text-white.text-xl(:icon="faEnvelope")
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { defineComponent, computed } from '@vue/composition-api'
+import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+
 import { TimeClock, LocationMarker } from '~/components/icons/'
 
 export default defineComponent({
+  components: { TimeClock, LocationMarker },
+
   props: {
     blok: {
       type: Object,
       required: true
+    }
+  },
+
+  setup() {
+    return {
+      faEnvelope: computed(() => faEnvelope),
+      faWhatsapp: computed(() => faWhatsapp),
+      faFacebookF: computed(() => faFacebookF),
     }
   }
 })
@@ -56,4 +81,11 @@ export default defineComponent({
   +breakpoint(mobile-landscape)
     border-top-style none
     border-left-style solid
+
+.btn-fb
+  background-color $fb-blue
+.btn-wa
+  background-color $wa-green
+.btn-en
+  background-color $orange
 </style>

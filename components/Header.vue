@@ -25,8 +25,6 @@ header.site-header
           li
             nuxt-link.text-white.block.no-underline(:to="localePath('blog')") Blog
           li
-            nuxt-link.text-white.block.no-underline(to='#') Contact
-          li
             LanguageSwitch
 </template>
 

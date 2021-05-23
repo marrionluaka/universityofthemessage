@@ -9,6 +9,8 @@
   "emplacement": "location",
   "adresse": "our location",
   "horaire": "times",
+  "dimanche-heures": "10 am &middot; 12 pm",
+  "mercredi-heures": "7:00 pm",
   "plus-d-evenements": "More Events",
   "contactez-nous": "contact us",
   "planifier-une-visite": "plan a visit",

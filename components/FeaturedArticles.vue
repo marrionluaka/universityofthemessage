@@ -3,7 +3,6 @@
   .self-center.text-center
     h2(class="text-2xl sm:text-3xl lg:text-4xl") {{ blok.title }}
     .break.mx-auto
-    p.paragraph.text-base.text-center(v-if="blok.subtitle") {{ blok.subtitle }}
   div(v-for="blok in blok.articleList" :key='blok._uid')
     component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
   nuxt-link.btn.self-center(:to="localePath(sanitizedPath)") {{ blok.button }}
