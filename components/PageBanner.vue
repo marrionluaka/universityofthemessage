@@ -47,6 +47,16 @@ export default defineComponent({
     left 0
     right 0
 
+    &::before
+      content ''
+      position absolute
+      top 0
+      right 0
+      bottom 0
+      left 0
+      background-image linear-gradient(to bottom right, #101010, #101010)
+      opacity .2
+
   &__content
     position relative
     z-index 2
