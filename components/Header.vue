@@ -91,7 +91,7 @@ export default defineComponent({
     li a
       padding .6em 1em
 
-      &:hover
+      &:hover, &.nuxt-link-exact-active.nuxt-link-active
         color #FAF0CA
 
   &__menu-trigger
