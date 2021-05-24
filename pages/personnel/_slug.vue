@@ -1,6 +1,11 @@
 <template lang="pug">
 Page(v-if="story" :story="story.content")
-  .container.mx-auto.px-6.py-12
+  template(#banner)
+    PageBanner.text-center(v-if="story.content.title")
+      h1.text-white.mb-0 {{ story.content.title }}
+      p.text-white.text-lg.font-light(class="md:text-3xl") {{ story.content.excerpt }}
+
+  .container.mx-auto.px-6.py-24
     .flex.flex-wrap.justify-between
       .flex.flex-col(
         v-for="blok in story.content.body"
@@ -16,13 +21,14 @@ import { pipe, split, last } from 'ramda'
 import { defineComponent, onMounted } from '@vue/composition-api'
 
 import Page from '~/components/Page.vue'
+import PageBanner from '~/components/PageBanner.vue'
 import StaffProfile from '~/components/StaffProfile.vue'
 
 import { useFetchStory } from '~/hooks/useFetchStory'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
 
 export default defineComponent({
-  components: { Page, StaffProfile },
+  components: { Page, StaffProfile, PageBanner },
 
   nuxtI18n: {
     paths: {

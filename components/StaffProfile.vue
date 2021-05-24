@@ -2,17 +2,21 @@
 div
   div
     img.rounded(:src="blok.img.filename" :alt="blok.img.alt")
-  div
-    .flex
-      a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-fb(data-id='fb')
-        font-awesome-icon.text-white.text-2xl(:icon="faFacebookF")
-      a.cursor-pointer.border-none.w-12.h-12.flex.justify-center.items-center.btn-wa(data-id='wa')
-        font-awesome-icon.text-white.text-2xl(:icon="faWhatsapp")
+  .mb-4(class="md:mb-0")
+    .flex.justify-center.-mt-8
+      a.cursor-pointer.rounded-full.border-none.w-16.h-16.flex.justify-center.items-center.social-btn(
+        :href="blok.facebook.url" target="_blank"
+      )
+        font-awesome-icon.text-white.text-lg(:icon="faFacebookF")
+      a.cursor-pointer.rounded-full.mx-2.border-none.w-16.h-16.flex.justify-center.items-center.social-btn(
+        :href="blok.whatsapp.url" target="_blank"
+      )
+        font-awesome-icon.text-white.text-lg(:icon="faWhatsapp")
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-import { faWhatsapp, faRedditAlien, faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { defineComponent, computed } from '@vue/composition-api'
+import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
 export default defineComponent({
   props: {
@@ -20,9 +24,18 @@ export default defineComponent({
       type: Object,
       required: true
     }
+  },
+
+  setup() {
+    return {
+      faWhatsapp: computed(() => faWhatsapp),
+      faFacebookF: computed(() => faFacebookF)
+    }
   }
 })
 </script>
 
 <style lang="stylus" scoped>
+.social-btn
+  background-color $turqoise
 </style>

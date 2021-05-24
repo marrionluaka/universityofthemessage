@@ -29,11 +29,11 @@
 
     .flex
       a.cursor-pointer.rounded-full.border-none.w-10.h-10.flex.justify-center.items-center.btn-fb(
-        href="https://www.facebook.com/branhameglise.delimete/"
+        href="https://www.facebook.com/branhameglise.delimete/" target="_blank"
       )
         font-awesome-icon.text-white.text-xl(:icon="faFacebookF")
       a.cursor-pointer.rounded-full.mx-4.border-none.w-10.h-10.flex.justify-center.items-center.btn-wa(
-        href="https://wa.me/243818290184/"
+        href="https://wa.me/243818290184/" target="_blank"
       )
         font-awesome-icon.text-white.text-xl(:icon="faWhatsapp")
       a.cursor-pointer.rounded-full.border-none.w-10.h-10.flex.justify-center.items-center.btn-en(
@@ -63,7 +63,7 @@ export default defineComponent({
     return {
       faEnvelope: computed(() => faEnvelope),
       faWhatsapp: computed(() => faWhatsapp),
-      faFacebookF: computed(() => faFacebookF),
+      faFacebookF: computed(() => faFacebookF)
     }
   }
 })
