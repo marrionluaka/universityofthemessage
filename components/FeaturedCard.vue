@@ -36,7 +36,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .card
-  @apply rounded-bl-md rounded-br-md flex flex-col flex-grow
+  @apply h-full rounded-bl-md rounded-br-md flex flex-col flex-grow
   overflow hidden
   transition transform 300ms ease, box-shadow 300ms ease
   transition box-shadow 300ms ease, -webkit-transform 300ms ease

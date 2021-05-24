@@ -1,6 +1,6 @@
 <template lang="pug">
 Page(v-if="story" :story="story.content")
-  section.py-10(v-for="(blok, i) in story.content.body" :key='blok._uid' :class="`section-${i}`" class="md:py-8")
+  section.overflow-auto.py-10(v-for="(blok, i) in story.content.body" :key='blok._uid' :class="`section-${i}`" class="md:py-8")
     component.mx-auto.px-6.py-12(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>
 
