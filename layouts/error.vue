@@ -1,9 +1,9 @@
 <template lang="pug">
 main.relative.h-full.flex.flex-col.items-center.justify-center
   .relative.px-4.text-center(v-if="error.statusCode === 404")
-    h1.text-white Page Not Found
-    p.text-white.mb-4 The page you are looking for doesn't exist or has been moved.
-    nuxt-link.btn.inline-block(to="/") Back To Home
+    h1.text-white {{ $t('page-non-trouvee') }}
+    p.text-white.mb-4 {{ $t('404') }}
+    nuxt-link.btn.inline-block(to="/") {{ $t('retour-maison') }}
 </template>
 
 <script>
