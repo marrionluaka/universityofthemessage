@@ -39,6 +39,7 @@ export default defineComponent({
             content: {
               ...story.content,
               columns: blok.columns || undefined,
+              date_published: story.first_published_at,
               link: '/' + getTranslatedSlug(story, blok.path.replace(/\/$/, ''))
             }
           }

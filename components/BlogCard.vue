@@ -9,11 +9,13 @@
     template(#default)
       .h-full.flex.flex-col.items-center.justify-center.rounded-bl-md.rounded-br-md.p-4.bg-white.text-center(class="px-8 md:px-16")
         h3.excerpt.capitalize.text-xl(class="sm:text-2xl md:text-3xl") {{ article.title }}
-        p(class="text-sm lg:text-base") {{ article.excerpt || 'some text describing what is happening in the scene' }}
+        p.blog-date(class="text-sm lg:text-base") {{ formattedDate }}
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+// @ts-ignore
+import { DateTime } from 'luxon'
+import { defineComponent, computed } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
@@ -21,6 +23,17 @@ export default defineComponent({
       type: Object,
       required: true
     }
+  },
+
+  setup(props) {
+    return {
+      formattedDate: computed(() => DateTime.fromISO(props.article.date_published).toFormat('LLL dd, yyyy'))
+    }
   }
 })
 </script>
+
+<style lang="stylus" scoped>
+.blog-date
+  color $light-gray
+</style>
