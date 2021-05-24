@@ -3,12 +3,12 @@ section
   PageBanner
     h1.page__title.mb-0 Sermons
     .page__intro
-      p.text-white.text-lg.font-light(class="md:text-3xl") Listen to sermons
+      p.text-white.text-lg.font-light.capitalize(class="md:text-3xl") {{ $t('ecoute-sermons') }}
 
   .container.mx-auto.px-6.mt-16
     section.flex.justify-center.items-center.py-4(v-if="currentVideoId")
       YouTubePlayer(:videoId="currentVideoId")
-    
+
     section.flex.justify-center.items-center.py-4
       a.yt-subscribe(target='_blank' href='https://www.youtube.com/channel/UCGFGRz9g8urP8GsgTzV48hg?sub_confirmation=1')
         img(alt='subscribe' src='~/assets/images/play-subscribe.png')
