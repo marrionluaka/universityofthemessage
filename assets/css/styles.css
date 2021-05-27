@@ -51,7 +51,7 @@ body {
   line-height: 1.9em;
 }
 h1 {
-  margin-top: 20px;
+  padding-top: 20px;
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;
@@ -78,14 +78,14 @@ h2 {
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;
-  margin-top: 14px;
+  padding-top: 14px;
   font-size: 30px;
   line-height: 1.2em;
   font-weight: 700;
 }
 @media (min-width: 768px) {
   h2 {
-    margin-top: 20px;
+    padding-top: 20px;
     font-size: 34px;
   }
 }
@@ -101,7 +101,7 @@ h2 {
   }
 }
 h3 {
-  margin-top: 22px;
+  padding-top: 22px;
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;
@@ -111,7 +111,7 @@ h3 {
 }
 @media (min-width: 768px) {
   h3 {
-    margin-top: 10px;
+    padding-top: 10px;
     font-size: 30px;
   }
 }
@@ -122,12 +122,12 @@ h3 {
 }
 @media (min-width: 1200px) {
   h3 {
-    margin-top: 22px;
+    padding-top: 22px;
     font-size: 36px;
   }
 }
 h4 {
-  margin-top: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;
@@ -151,7 +151,7 @@ h4 {
   }
 }
 h5 {
-  margin-top: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;
@@ -170,7 +170,7 @@ h5 {
   }
 }
 h6 {
-  margin-top: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
   font-family: Gayathri, sans-serif;
   color: #181733;

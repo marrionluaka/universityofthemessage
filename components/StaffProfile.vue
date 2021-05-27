@@ -2,7 +2,7 @@
 div
   div
     img.rounded(:src="blok.img.filename" :alt="blok.img.alt")
-  .mb-4(class="md:mb-0")
+  .mb-4
     .flex.justify-center.-mt-8
       a.cursor-pointer.rounded-full.border-none.w-16.h-16.flex.justify-center.items-center.social-btn(
         :href="blok.facebook.url" target="_blank"

@@ -34,8 +34,12 @@ export default defineComponent({
     border-left-color $orange
   hr
     @apply my-6
+  ol, ul
+    @apply pl-8 py-4
   ol
-    @apply list-decimal pl-8 py-4
+    list-style-type decimal
+  ul
+    list-style-type disc
   li
     @apply pl-2
     font-weight 700

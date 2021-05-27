@@ -5,13 +5,12 @@ Page(v-if="story" :story="story.content")
       h1.text-white.mb-0 {{ story.content.title }}
       p.text-white.text-lg.font-light(class="md:text-3xl") {{ story.content.excerpt }}
 
-  .container.mx-auto.px-6.py-24
+  .container.container--narrow.mx-auto.px-6.py-24
     .flex.flex-wrap.justify-between
       .flex.flex-col(
         v-for="blok in story.content.body"
         :key='blok._uid'
-        :class="{ 'sm:pr-6': blok.component == 'StaffProfile', 'sm:pl-6': blok.component == 'PageContent' }"
-        class="md:py-0 w-full sm:w-1/2"
+        class="md:py-0"
       )
         component(v-if="$options.components[blok.component]" :blok='blok' :is='blok.component')
 </template>

@@ -87,17 +87,19 @@ p
   & > div
     @apply py-6
 
-.accordion-panel
-  &__header
-    &:not(.accordion-active):hover
-      background-color: #e0e0e0
+.accordion
+  clear both
+  &-panel
+    &__header
+      &:not(.accordion-active):hover
+        background-color: #e0e0e0
 
-  &__carret
-    background-image linear-gradient(to top right, transparent 50%, #727272 50%)
-    width 0.5rem
-    height 0.5rem
-    transform rotate(-45deg)
-    animation accordion-is-inactive 200ms linear forwards
+    &__carret
+      background-image linear-gradient(to top right, transparent 50%, #727272 50%)
+      width 0.5rem
+      height 0.5rem
+      transform rotate(-45deg)
+      animation accordion-is-inactive 200ms linear forwards
 
 .active .accordion-panel__carret
   animation accordion-is-active 200ms linear forwards
