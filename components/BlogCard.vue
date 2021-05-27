@@ -8,7 +8,7 @@
   )
     template(#default)
       .h-full.flex.flex-col.items-center.justify-center.rounded-bl-md.rounded-br-md.p-4.bg-white.text-center(class="px-8 md:px-16")
-        h3.excerpt.capitalize.text-xl(class="sm:text-2xl md:text-3xl") {{ article.title }}
+        h3.excerpt.capitalize.text-xl(class="sm:text-2xl md:text-3xl") {{ excerpt(article.title) }}
         p.blog-date(class="text-sm lg:text-base") {{ formattedDate }}
 </template>
 
@@ -16,6 +16,8 @@
 // @ts-ignore
 import { DateTime } from 'luxon'
 import { defineComponent, computed } from '@vue/composition-api'
+
+import { excerpt } from '~/utils'
 
 export default defineComponent({
   props: {
@@ -27,6 +29,7 @@ export default defineComponent({
 
   setup(props) {
     return {
+      excerpt,
       formattedDate: computed(() => DateTime.fromISO(props.article.date_published).toFormat('LLL dd, yyyy'))
     }
   }

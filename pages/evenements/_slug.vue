@@ -1,7 +1,7 @@
 <template lang="pug">
 Page(v-if="story" :story="story.content")
   template(#banner)
-    PostBanner(:title="story.content.title" :imgSrc="story.content.featured_image.filename")
+    PostBanner(:title="story.content.title" :imgSrc="story.content.featured_image.filename" v-if="eventData")
       template(#date)
         EventSticker(:date="formateDate(eventData.start)")
 
@@ -21,7 +21,7 @@ Page(v-if="story" :story="story.content")
                 LocationMarker.mr-2.-mb-1.text-white(fill="white")
                 h6.mb-0.text-base.text-white.capitalize {{ $t('emplacement') }}
               template(#content)
-                p.text-white {{ eventData.location }}
+                p.text-white {{ eventData.location || 'Mission Évangélique Branham Église' }}
 </template>
 
 <script lang="ts">
@@ -54,10 +54,14 @@ export default defineComponent({
     const { eventData, setEventData, formateTime, formateDate } = useEventSchedule()
 
     onMounted(async () => {
-      const getCurrentPath = pipe(split('/'), last)
-      await fetchStory(`evenements/${getCurrentPath(location.pathname)}`)
-      await setTranslatedSlugs(story.value)
-      setEventData(story.value.content.body)
+      try {
+        const getCurrentPath = pipe(split('/'), last)
+        await fetchStory(`evenements/${getCurrentPath(location.pathname)}`)
+        await setTranslatedSlugs(story.value)
+        setEventData(story.value.content.body)
+      } catch (e) {
+        // do nothing
+      }
     })
 
     return { story, eventData, formateTime, formateDate }

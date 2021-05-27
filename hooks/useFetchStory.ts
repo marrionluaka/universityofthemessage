@@ -17,7 +17,7 @@ export const useFetchStory = () => {
       story.value = data.story
       setStoryBridgeListeners(data.story.content)
     } catch (e) {
-      console.warn(e)
+      context.isDev && console.warn(e)
       context.error({ statusCode: 404 })
     }
   }

@@ -4,19 +4,12 @@ import { ref, Ref } from '@vue/composition-api'
 
 import { useContext } from '~/hooks/useContext'
 
-const _defaultDate = {
-  start: '2021-05-14 14:30',
-  end: '2021-05-14 15:30',
-  location: '12345 Fake Street'
-}
-
 export const useEventSchedule = () => {
   const { i18n } = useContext()
-  const eventData: Ref<any> = ref(_defaultDate)
+  const eventData: Ref<any> = ref(null)
 
-  const setEventData = (list: any) => {
-    eventData.value = list?.find((x: any) => x.component === 'EventSchedule') || _defaultDate
-  }
+  const setEventData = (list: any) =>
+    eventData.value = list?.find((x: any) => x.component === 'EventSchedule')
 
   const formateTime = (start: any, end: any) => `${_getTime(start)} - ${_getTime(end)}`
 

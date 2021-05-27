@@ -1,7 +1,7 @@
 <template lang="pug">
-.event
-  .text-lg.text-white.capitalize {{ month }}
-  .text-3xl.text-white {{ day }}
+.event(class="w-16 h-16 md:w-20 md:h-20")
+  .text-base.text-white.capitalize(class="md:text-lg") {{ month }}
+  .text-2xl.text-white(class="md:text-3xl") {{ day }}
 </template>
 
 <script lang="ts">
@@ -28,7 +28,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .event
-  @apply flex flex-col items-center justify-center rounded-full -mt-16 w-20 h-20
+  @apply flex flex-col items-center justify-center rounded-full -mt-16
   font-family Gayathri, sans-serif
   background-color $purple
 </style>

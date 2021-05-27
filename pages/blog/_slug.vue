@@ -33,9 +33,13 @@ export default defineComponent({
     const { setTranslatedSlugs } = useTranslatedSlugs()
 
     onMounted(async () => {
-      const getCurrentPath = pipe(split('/'), last)
-      await fetchStory(`blog/${getCurrentPath(location.pathname)}`)
-      await setTranslatedSlugs(story.value)
+      try {
+        const getCurrentPath = pipe(split('/'), last)
+        await fetchStory(`blog/${getCurrentPath(location.pathname)}`)
+        await setTranslatedSlugs(story.value)
+      } catch (e) {
+        // do nothing
+      }      
     })
 
     return { story }
