@@ -35,7 +35,6 @@ export default defineComponent({
         await fetchArticles()
       } catch (e) {
         // do nothing
-        console.warn(e)
       }
     })
 

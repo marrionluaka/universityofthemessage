@@ -61,7 +61,11 @@ export default defineComponent({
 
     const setLinks = (parentSlug: string) => {
       links.value = articles.value
-        .filter((article: any) => props.body.links.includes(article.uuid))
+        .filter((article: any) => {
+          console.log('body:', props.body)
+          console.log('res:', props.body.links.includes(article.uuid))
+          return props.body.links.includes(article.uuid)
+        })
         .map((story: any) => ({ name: story.content.title, path: '/' + getTranslatedSlug(story, parentSlug) }))
     }
 

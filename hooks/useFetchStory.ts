@@ -13,7 +13,6 @@ export const useFetchStory = () => {
 
   const fetchStory = async (page: string) => {
     try {
-      console.log('prod', version)
       const { data } = await storyApi.get(`cdn/stories/${locale}${page}`, { version })
       story.value = data.story
       // setStoryBridgeListeners(data.story.content)
