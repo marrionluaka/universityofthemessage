@@ -11,7 +11,7 @@ transition(name="fade")
 
 <script lang="ts">
 import { pipe, split, last } from 'ramda'
-import { defineComponent, watch, ref, Ref } from '@vue/composition-api'
+import { onMounted, defineComponent, watch, ref, Ref } from '@vue/composition-api'
 
 import { useFetchArticles } from '~/hooks/useFetchArticles'
 import useTranslatedSlugs from '~/hooks/useTranslatedSlugs'
@@ -38,34 +38,33 @@ export default defineComponent({
     const links: Ref<ILink[]> = ref([])
     const parentLink: Ref<ILink> = ref({ name: '', path: '' })
 
-    watch(
-      () => articles.value,
-      articles => {
-        const story = articles.find(x => x.is_startpage)
-        setLinks(story?.slug)
-        setParentLink(story)
-      }
-    )
+    const setLinks = (articles: any) => {
+      const story = articles.find((x: any) => x.is_startpage)
+
+      if (!story) return
+
+      _setChildrenLinks(story.slug)
+      _setParentLink(story)
+    }
 
     const isActive = (path: string) => {
       const getCurrentPath = pipe<string, any, any>(split('/'), last)
       return parentLink.value.path !== location.pathname && path.includes(getCurrentPath(location.pathname))
     }
 
-    const setParentLink = (parentStory: any) => {
+    watch(() => articles.value, setLinks)
+    onMounted(() => setLinks(articles.value))
+
+    const _setParentLink = (parentStory: any) => {
       parentLink.value = {
         name: parentStory.content.title,
         path: '/' + getTranslatedPath(parentStory?.slug)
       }
     }
 
-    const setLinks = (parentSlug: string) => {
+    const _setChildrenLinks = (parentSlug: string) => {
       links.value = articles.value
-        .filter((article: any) => {
-          console.log('body:', props.body)
-          console.log('res:', props.body.links.includes(article.uuid))
-          return props.body.links.includes(article.uuid)
-        })
+        .filter((article: any) => props.body.links.includes(article.uuid))
         .map((story: any) => ({ name: story.content.title, path: '/' + getTranslatedSlug(story, parentSlug) }))
     }
 
