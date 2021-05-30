@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { TweenLite, Elastic, Bounce } from 'gsap'
+import { TweenMax, Elastic, Bounce } from 'gsap'
 import { curry, findIndex, propEq, update } from 'ramda'
 import { onMounted, defineComponent, PropType, ref, Ref } from '@vue/composition-api'
 
@@ -54,8 +54,8 @@ export default defineComponent({
     }
 
     const _findIdxById = curry((id, list) => findIndex(propEq('_uid', id))(list))
-    const _closePanel = (el: any) => TweenLite.to(el, 0.5, { height: 0, ease: Bounce.easeOut })
-    const _openPanel = (el: any) => TweenLite.to(el, 1, { height: el?.scrollHeight, ease: Elastic.easeOut.config(1, 0.3) })
+    const _closePanel = (el: any) => TweenMax.to(el, 0.5, { height: 0, ease: Bounce.easeOut })
+    const _openPanel = (el: any) => TweenMax.to(el, 1, { height: el?.scrollHeight, ease: Elastic.easeOut.config(1, 0.3) })
 
     return { panels, togglePanel }
   }
