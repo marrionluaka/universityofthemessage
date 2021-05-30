@@ -26,7 +26,7 @@
     "@vue-hero-icons/outline": "1.7.2",
     "@vue/composition-api": "1.0.0-beta.22",
     "core-js": "^3.6.5",
-    "gsap": "3.6.1",
+    "gsap": "^3.6.1",
     "luxon": "1.27.0",
     "nuxt": "^2.14.6",
     "nuxt-fontawesome": "0.4.0",

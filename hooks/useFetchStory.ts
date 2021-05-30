@@ -1,11 +1,11 @@
 import { computed, ref, Ref } from '@vue/composition-api'
 
 import { useContext } from '~/hooks/useContext'
-import useStoryBridge from '~/hooks/useStoryBridge'
+// import useStoryBridge from '~/hooks/useStoryBridge'
 
 export const useFetchStory = () => {
   const { context, storyApi, i18n } = useContext()
-  const { setStoryBridgeListeners } = useStoryBridge()
+  // const { setStoryBridgeListeners } = useStoryBridge()
 
   const story: Ref<any> = ref(null)
   const locale = i18n.locale === 'fr' ? '' : 'en/'
@@ -13,9 +13,10 @@ export const useFetchStory = () => {
 
   const fetchStory = async (page: string) => {
     try {
+      console.log('prod', version)
       const { data } = await storyApi.get(`cdn/stories/${locale}${page}`, { version })
       story.value = data.story
-      setStoryBridgeListeners(data.story.content)
+      // setStoryBridgeListeners(data.story.content)
     } catch (e) {
       context.isDev && console.warn(e)
       context.error({ statusCode: 404 })
