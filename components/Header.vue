@@ -14,7 +14,7 @@ header.site-header
       XIcon.text-white(v-else @click="setIsMenuOpen")
 
     .site-header__menu(:class="{ 'site-header__menu--active': isMenuOpen }")
-      nav
+      nav.pt-4(class="md:pt-0")
         ul.list-none.p-0.m-0(class="md:flex md:justify-end")
           li.current-menu-item
             nuxt-link.text-white.block.no-underline(:to="localePath('a-propos')") {{ $t('a-propos-nav') }}
